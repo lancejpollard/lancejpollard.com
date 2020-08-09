@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset='utf-8' />
+    <title>Lance Pollard | Software Engineer</title>
+    <meta name='description' content='Lance Pollard'>
+    <meta name='keywords' content='lancejpollard, software engineer'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <meta property='og:type' content='article' />
+    <meta property='og:title' content='Lance Pollard'>
+    <meta property='og:description' content='Lance Pollard'>
+    <meta property='og:image' content='face.png'>
+    <meta name='twitter:card' content='summary_large_image'>
+    <meta property='og:site_name' content='Lance Pollard'>
+    <link rel='stylesheet' href='index.css' />
+  </head>
+  <body>
+    <header class='move soil head wall plr16 v vc hc'>
+      <h1 class='maxw672 zvw672minw672 mtb32 fs16'>WebGL Notes</h1>
+    </header>
+    <section class='move w100v minh100v v'>
+      <div class='hc fs16 mtb64'>
+        <div class='maxw672 zvw672minw672 plr16'>
+          <h2 class='wave-slab mtb32 fs16'><code>gl.TRIANGLE_STRIP</code></h2>
+          <p class='mb16'>
+            Use this as opposed to gl.TRIANGLES to improve performance.
+          </p>
+          <p class='mb16'>
+            Strips are faster because you only need to send one vertex to define the next triangle, and I believe the hardware is also optimized at handling that kind of data.
+          </p>
+          <h2 class='wave-slab mtb32 fs16'><code>const [minSize, maxSize] = gl.getParameter(gl.ALIASED_POINT_SIZE_RANGE)</code></h2>
+          <h2 class='wave-slab mtb32 fs16'>Vertex Shaders</h2>
+          <p class='mb16'>
+            A vertex shader receives a set of triangle vertices (since we are only using gl.TRIANGLE_STRIP), and computes gl_Position, the final position of a single vertex.
+          </p>
+          <h2 class='wave-slab mtb32 fs16'>gl.DYNAMIC_DRAW vs. gl.STATIC_DRAW</h2>
+          <p class='mb16'>
+            If the buffer data never changes, use STATIC_DRAW, otherwise use DYNAMIC_DRAW.
+          </p>
+          <h2 class='wave-slab mtb32 fs16'>projectionMatrix</h2>
+          <p class='mb16'>
+            Global uniform of a projectionMatrix.
+          </p>
+
+          <!--<h2 class='wave-slab mtb32 fs16'>Vertex Shaders</h2>
+          <p class='mb16'>
+
+          </p>-->
+        </div>
+      </div>
+    </section>
+    <section class='move soil wall'></section>
+    <section class='move wall'>
+      <a href='/'>
+        <img draggable='false' src='face.png' class='a1' width='128'/>
+      </a>
+    </section>
+    <div class='pf v s b16 r16'>
+      <div class='wave-r r w32 h32 mb16 tune-soul cp move t4'></div>
+      <div class='wave-r r w32 h32 tune-back cp t4'></div>
+    </div>
+  </body>
+</html>
