@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset='utf-8' />
+    <title>On Software "Utilities" by Lance Pollard</title>
+    <meta name='description' content='On Software "Utilities"'>
+    <meta name='keywords' content='lancejpollard, software engineer'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <meta property='og:type' content='article' />
+    <meta property='og:title' content='On Software "Utilities"'>
+    <meta property='og:description' content='On Software "Utilities"'>
+    <meta property='og:image' content='face.png'>
+    <meta name='twitter:card' content='summary_large_image'>
+    <meta property='og:site_name' content='Lance Pollard'>
+    <link rel='stylesheet' href='index.css' />
+  </head>
+  <body>
+    <header class='move soil head wall plr16 v vc hc'>
+      <h1 class='maxw672 zvw672minw672 mtb32 fs16'>On Software "Utilities"</h1>
+    </header>
+    <section class='move w100v minh100v v'>
+      <div class='hc fs16 mtb64'>
+        <div class='maxw672 zvw672minw672 plr16'>
+          <p class='mb16'>Often times we find ourselves thinking in terms of "utilities". We have, for example, the great and competing lodash and underscore "utility" libraries, which have a bunch of "utilities". We also routinely include in our project a "utils" folder and put in there a bunch of utilities. And that's about it, not too much thought goes on about it.</p>
+
+          <h2 class='wave-slab mtb32 fs16'>The Problem</h2>
+          <p class='mb16'>Why is this a problem? Utilities are often things which don't seem to be classifiable into anything else other than "utils". But what are utilities? They are usually "actions". We reserve (and do the same anti-pattern with a "consts" folder) the utils folder for essentially "actions". You have string actions like reversing, changing case, etc., array actions like reversing, sorting, uniqueifying, etc. You have object actions, and action actions and boolean actions like "isFunction".</p>
+          <p class='mb16'>What does utility mean? It means something *useful*. It means something that you *use*. In essence, it is an action thing. Just like we don't have a folder called "stuff" in which we put everything *except* utils, we shouldn't have a folder called "utils" where we put everything except "stuff". Why do we create folders calld "components" or "views" or "models"? Because it scopes them down into what they actually are. It gives us a better mental model of what we can do with these "objects".</p>
+          <p class='mb16'>The problem with the utils folder is essentially it is a junk drawer. Everything goes into it that doesn't fit into nice categories. But the reality is, these utils are just actions, and so should be called such.</p>
+          <h2 class='wave-slab mtb32 fs16'>The Solution</h2>
+          <p class='mb16'>The solution is, we should create an "actions" folder instead of a "utils" folder. And in that folder, we should put only actions. Which is the bulk of our application. In fact, almost everything in a JavaScript application that is NOT a DSL is an action. This just means you need to organize your actions, like you would tools in a toolchest. You put your authentication actions here, your render or graphic actions here, your REST API actions here, etc. And you thoroughly unit test your actions, rather than leaving them as utils which often go ignored.</p>
+          <p class='mb16'>In essence, I propose thinking in terms of "actions" as first-class citizens in the application, rather than utils. In fact, you should never have a utils folder (a junk-drawer folder). You should instead have a clean "actions" folder.</p>
+          <p class='mb16'>What do you gain from this approach? You gain a new layer of abstraction, the "actions". With this layer of abstraction, you can create an "action caller" module, which calls your actions in your app, like you would when implementing a test runner, or a redux state machine. You can then trace and more easily debug and validate these actions however you like. In fact, you don't have to import a bunch of random imports, you can import your actions and be done with it. You can also do it differently and have actions be grouped into "plugins" which you add to a global action caller module, like your API module. With this, actions can have a standard first-class pattern which is easily mockable and unit testable. In addition, it cleans up the abstraction, getting rid of your junk drawer of code.</p>
+        </div>
+      </div>
+    </section>
+    <section class='move soil wall'></section>
+    <section class='move wall'>
+      <a href='/'>
+        <img draggable='false' src='face.png' class='a1' width='128'/>
+      </a>
+    </section>
+    <div class='pf v s b16 r16'>
+      <div class='wave-r r w32 h32 mb16 tune-soul cp move t4'></div>
+      <div class='wave-r r w32 h32 tune-back cp t4'></div>
+    </div>
+  </body>
+</html>
