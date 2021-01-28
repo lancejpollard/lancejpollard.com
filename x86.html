@@ -1,0 +1,91 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset='utf-8' />
+    <title>x86 Notes by Lance Pollard</title>
+    <meta name='description' content='x86 Notes'>
+    <meta name='keywords' content='lancejpollard, software engineer'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <meta property='og:type' content='article' />
+    <meta property='og:title' content='x86 Notes'>
+    <meta property='og:description' content='x86 Notes'>
+    <meta property='og:image' content='face.png'>
+    <meta name='twitter:card' content='summary_large_image'>
+    <meta property='og:site_name' content='Lance Pollard'>
+    <link rel='stylesheet' href='index.css' />
+  </head>
+  <body>
+    <header class='move soil head wall plr16 v vc hc'>
+      <h1 class='maxw672 zvw672minw672 mtb32 fs16'>x86 Notes</h1>
+    </header>
+    <section class='move w100v minh100v v'>
+      <div class='hc fs16 mtb64'>
+        <div class='maxw672 zvw672minw672 plr16'>
+          <p class='mb16'>
+            Things are specified in little endian byte order.
+          </p>
+          <h2 class='wave-slab mtb32 fs16'>Prefix Codes</h2>
+          <ul class='v mb32'>
+            <li class='fx ni16'>0x66 prefix for selecting between 16 and 32 bit values, the non-default size.</li>
+            <li class='fx ni16'>0x67 prefix for selecting between 16 and 32 bit addressing values, the non-default size.</li>
+            <li class='fx ni16'>0xF3 prefix for REP (used only with string instructions)</li>
+            <li class='fx ni16'>0xF3 prefix for REPE/REPZ (used only with string instructions</li>
+            <li class='fx ni16'>0xF2 prefix for REPNE/REPNZ (used only with string instructions)</li>
+            <li class='fx ni16'>0xF0 prefix for LOCK </li>
+          </ul>
+          <h2 class='wave-slab mtb32 fs16'>REX Prefix Codes</h2>
+          <p class='mb16'>REX prefixes are instruction-prefix bytes used in 64-bit mode.</p>
+          <ul class='v mb32'>
+            <li class='fx ni16'>Specify GPR registers</li>
+            <li class='fx ni16'>Specify SSE registers</li>
+            <li class='fx ni16'>Specify 64-bit operand size</li>
+            <li class='fx ni16'>Specify extended control registers</li>
+          </ul>
+          <h2 class='wave-slab mtb32 fs16'>Immediate Bytes</h2>
+          <ul class='v mb32'>
+            <li class='fx ni16'>imm8 = Immediate Byte</li>
+            <li class='fx ni16'>imm16 = Immediate Word</li>
+            <li class='fx ni16'>imm32 = Immediate Double Word</li>
+          </ul>
+          <h2 class='wave-slab mtb32 fs16'>Displacement Bytes</h2>
+          <ul class='v mb32'>
+            <li class='fx ni16'>0, 1, 2, 4</li>
+          </ul>
+          <h2 class='wave-slab mtb32 fs16'>ModR/M Bytes</h2>
+          <ul class='v mb32'>
+            <li class='fx ni16'>0 to 1 used</li>
+            <li class='fx ni16'>r = register</li>
+            <li class='fx ni16'>m = memory</li>
+          </ul>
+          <h2 class='wave-slab mtb32 fs16'>SIB Bytes</h2>
+          <ul class='v mb32'>
+            <li class='fx ni16'>0 to 1 used</li>
+          </ul>
+          <h2 class='wave-slab mtb32 fs16'>Opcodes</h2>
+          <p class='mb16'>A primary opcode can be 1, 2, or 3 bytes in length.</p>
+          <h2 class='wave-slab mtb32 fs16'>x86 Instruction Encoding</h2>
+          <h2 class='wave-slab mtb32 fs16'>x86 Operand Encoding</h2>
+          <ul class='v mb32'>
+            <li class='fx ni16'>R = reg</li>
+            <li class='fx ni16'>I = immediate</li>
+            <li class='fx ni16'>M = r/m</li>
+          </ul>
+          <h2 class='wave-slab mtb32 fs16'>Resources</h2>
+          <ul class='v mb32'>
+            <li class='fx ni16'><a href='http://www.c-jump.com/CIS77/CPU/x86/X77_0270_modrm_byte.htm'>C Jump</a></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    <section class='move soil wall'></section>
+    <section class='move wall'>
+      <a href='/'>
+        <img draggable='false' src='face.png' class='a1' width='128'/>
+      </a>
+    </section>
+    <div class='pf v s b16 r16'>
+      <div class='wave-r r w32 h32 mb16 tune-soul cp move t4'></div>
+      <div class='wave-r r w32 h32 tune-back cp t4'></div>
+    </div>
+  </body>
+</html>
