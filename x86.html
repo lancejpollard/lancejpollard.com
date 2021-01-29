@@ -31,7 +31,8 @@
             <li class='fx ni16'>0xF3 prefix for REP (used only with string instructions)</li>
             <li class='fx ni16'>0xF3 prefix for REPE/REPZ (used only with string instructions</li>
             <li class='fx ni16'>0xF2 prefix for REPNE/REPNZ (used only with string instructions)</li>
-            <li class='fx ni16'>0xF0 prefix for LOCK </li>
+            <li class='fx ni16'>0xF0 prefix for LOCK</li>
+            <li class='fx ni16'>0x0F is an option opcode prefix for expansion.</li>
           </ul>
           <h2 class='wave-slab mtb32 fs16'>REX Prefix Codes</h2>
           <p class='mb16'>REX prefixes are instruction-prefix bytes used in 64-bit mode.</p>
@@ -50,6 +51,9 @@
           <h2 class='wave-slab mtb32 fs16'>Displacement Bytes</h2>
           <ul class='v mb32'>
             <li class='fx ni16'>0, 1, 2, 4</li>
+            <li class='fx ni16'>1-byte displacement is present if MOD bits in MOD-R/M operand equals 01</li>
+            <li class='fx ni16'>4-bytes displacement is present if MOD bits in MOD-R/M operand equals 10</li>
+            <li class='fx ni16'>2-bytes displacement is present if MOD bits in MOD-R/M operand equals 10 and a 0x66 16-bit mode prefix is used</li>
           </ul>
           <h2 class='wave-slab mtb32 fs16'>ModR/M Bytes</h2>
           <ul class='v mb32'>
@@ -57,9 +61,49 @@
             <li class='fx ni16'>r = register</li>
             <li class='fx ni16'>m = memory</li>
           </ul>
+          <h2 class='wave-slab mtb32 fs16'>ModR/M byte, reg value</h2>
+          <ul class='v mb32'>
+            <li class='fx ni16'>000 = al, ax, eax</li>
+            <li class='fx ni16'>001 = cl, cx, ecx</li>
+            <li class='fx ni16'>010 = dl, dx, edx</li>
+            <li class='fx ni16'>011 = bl, bx, ebx</li>
+            <li class='fx ni16'>100 = ah, sp, esp</li>
+            <li class='fx ni16'>101 = ch, bp, ebp</li>
+            <li class='fx ni16'>110 = dh, si, esi</li>
+            <li class='fx ni16'>111 = bh, di, edi</li>
+          </ul>
           <h2 class='wave-slab mtb32 fs16'>SIB Bytes</h2>
           <ul class='v mb32'>
             <li class='fx ni16'>0 to 1 used</li>
+          </ul>
+          <h2 class='wave-slab mtb32 fs16'>SIB scale value</h2>
+          <ul class='v mb32'>
+            <li class='fx ni16'>00 = index * 1 (1 byte)</li>
+            <li class='fx ni16'>01 = index * 2 (2 bytes)</li>
+            <li class='fx ni16'>10 = index * 4 (4 bytes)</li>
+            <li class='fx ni16'>11 = index * 8 (8 bytes)</li>
+          </ul>
+          <h2 class='wave-slab mtb32 fs16'>SIB index value</h2>
+          <ul class='v mb32'>
+            <li class='fx ni16'>000 = eax</li>
+            <li class='fx ni16'>001 = ecx</li>
+            <li class='fx ni16'>010 = edx</li>
+            <li class='fx ni16'>011 = ebx</li>
+            <li class='fx ni16'>100 = illegal</li>
+            <li class='fx ni16'>101 = ebp</li>
+            <li class='fx ni16'>110 = esi</li>
+            <li class='fx ni16'>111 = edi</li>
+          </ul>
+          <h2 class='wave-slab mtb32 fs16'>SIB index value</h2>
+          <ul class='v mb32'>
+            <li class='fx ni16'>000 = eax</li>
+            <li class='fx ni16'>001 = ecx</li>
+            <li class='fx ni16'>010 = edx</li>
+            <li class='fx ni16'>011 = ebx</li>
+            <li class='fx ni16'>100 = esp</li>
+            <li class='fx ni16'>101 = displacement-only if mod == 00, ebp if mod == 01 or 10</li>
+            <li class='fx ni16'>110 = esi</li>
+            <li class='fx ni16'>111 = edi</li>
           </ul>
           <h2 class='wave-slab mtb32 fs16'>Opcodes</h2>
           <p class='mb16'>A primary opcode can be 1, 2, or 3 bytes in length.</p>
