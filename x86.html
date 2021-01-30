@@ -61,7 +61,17 @@
             <li class='fx ni16'>r = register</li>
             <li class='fx ni16'>m = memory</li>
           </ul>
-          <h2 class='wave-slab mtb32 fs16'>ModR/M byte, reg value</h2>
+          <h2 class='wave-slab mtb32 fs16'>ModR/M mod bits</h2>
+          <ul class='v mb32'>
+            <li class='fx ni16'>00 = register indirect addressing mode</li>
+            <li class='fx ni16'>00 = SIB with no displacement IF r/m == 100</li>
+            <li class='fx ni16'>00 = displacement only addressing mode IF r/m == 101</li>
+            <li class='fx ni16'>01 = 1-byte signed displacement follows addressing mode byte(s)</li>
+            <li class='fx ni16'>10 = 4-byte signed displacement follows addressing mode byte(s)</li>
+            <li class='fx ni16'>11 = register addressing mode</li>
+          </ul>
+          <h2 class='wave-slab mtb32 fs16'>ModR/M reg bits</h2>
+          <p class='mb16'>The reg bits specify the register being addressed</p>
           <ul class='v mb32'>
             <li class='fx ni16'>000 = al, ax, eax</li>
             <li class='fx ni16'>001 = cl, cx, ecx</li>
