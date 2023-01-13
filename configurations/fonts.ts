@@ -1,0 +1,23 @@
+export type FontDataType = [string, string, string]
+
+const FONTS: Record<string, FontDataType> = {
+  amharic: ['/fonts/screen/amharic.ttf', 'ጥበብ', 'Amharic'],
+  arabic: ['/fonts/screen/arabic.ttf', 'حديقة', 'Arabic'],
+  burmese: ['/fonts/screen/myanmar.ttf', 'ပင်လယ်', 'Burmese'],
+  canadian: ['/fonts/screen/canadian.ttf', 'ᕿᓚᓗᒐᖅ', 'Canadian'],
+  chinese: [
+    '/fonts/screen/chinese-(simplified).otf',
+    '晓',
+    'CJKSimplified',
+  ],
+  georgian: ['/fonts/screen/georgian.ttf', 'ფრჩხილი', 'Georgian'],
+  he: ['/fonts/screen/hebrew.ttf', 'אזהרה', 'Hebrew'],
+  hindi: ['/fonts/screen/devanagari.ttf', 'टोकरी', 'Devanagari'],
+  japanese: ['/fonts/screen/japanese.otf', 'ばった', 'Japanese'],
+  latin: ['/fonts/screen/latin.otf', 'IEAOU', 'Latin'],
+  tamil: ['/fonts/screen/tamil.ttf', 'புஷ்பம்', 'Tamil'],
+  thai: ['/fonts/screen/thai.ttf', 'บ้าน', 'Thai'],
+  tibetan: ['/fonts/screen/tibetan.ttf', 'སེང', 'Tibetan'],
+}
+
+export default FONTS

@@ -1,0 +1,367 @@
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-size: 20px;
+}
+
+::selection {
+  background: #777;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+#__next {
+  width: 100vw;
+  height: 100vh;
+  overflow-y: hidden;
+}
+
+@font-face {
+  font-family: 'Latin';
+  font-style: normal;
+  font-weight: normal;
+  src: url('/fonts/screen/latin.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'Latin';
+  font-style: bold;
+  font-weight: bold;
+  src: url('/fonts/screen/latin-(bold).ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Arabic';
+  font-style: normal;
+  font-weight: normal;
+  src: url('/fonts/screen/arabic.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Armenian';
+  font-style: normal;
+  font-weight: normal;
+  src: url('/fonts/screen/armenian.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Hebrew';
+  font-style: normal;
+  font-weight: normal;
+  src: url('/fonts/screen/hebrew.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Tamil';
+  font-style: normal;
+  font-weight: normal;
+  src: url('/fonts/screen/tamil.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Burmese';
+  font-style: normal;
+  font-weight: normal;
+  src: url('/fonts/screen/myanmar.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'CJKSimplified';
+  font-style: normal;
+  font-weight: normal;
+  src: url('/fonts/screen/chinese-(simplified).otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'Tibetan';
+  font-style: normal;
+  font-weight: normal;
+  src: url('/fonts/screen/tibetan.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Japanese';
+  font-style: normal;
+  font-weight: normal;
+  src: url('/fonts/screen/japanese.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'Greek';
+  font-style: normal;
+  font-weight: normal;
+  /* src: url('/fonts/screen/greek5.ttf') format('truetype'); */
+  src: url('/fonts/screen/greek4.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Thai';
+  font-style: normal;
+  font-weight: normal;
+  src: url('/fonts/screen/thai.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Khmer';
+  font-style: normal;
+  font-weight: normal;
+  src: url('/fonts/screen/khmer.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Canadian';
+  font-style: normal;
+  font-weight: normal;
+  src: url('/fonts/screen/canadian.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Devanagari';
+  font-style: normal;
+  font-weight: normal;
+  src: url('/fonts/screen/devanagari.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Bengali';
+  font-style: normal;
+  font-weight: normal;
+  src: url('/fonts/screen/bengali.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Georgian';
+  font-style: normal;
+  font-weight: normal;
+  src: url('/fonts/screen/georgian.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Amharic';
+  font-style: normal;
+  font-weight: normal;
+  src: url('/fonts/screen/amharic.ttf') format('truetype');
+}
+
+* {
+  box-sizing: border-box;
+  font-family: Latin;
+}
+
+.arabicFont,
+.arabicFont * {
+  font-family: Arabic;
+  text-align: right;
+}
+
+.armenianFont,
+.armenianFont * {
+  font-family: Armenian;
+  text-align: right;
+}
+
+.persianFont,
+.persianFont * {
+  font-family: Arabic;
+}
+
+.hebrewFont,
+.hebrewFont * {
+  font-family: Hebrew;
+  text-align: right;
+}
+
+.bengaliFont,
+.bengaliFont * {
+  font-family: Bengali;
+}
+
+.inuktitutFont,
+.inuktitutFont * {
+  font-family: Canadian;
+}
+
+.chineseFont,
+.chineseFont * {
+  font-family: CJKSimplified;
+}
+
+.japaneseFont,
+.japaneseFont * {
+  font-family: Japanese;
+}
+
+.tamilFont,
+.tamilFont * {
+  font-family: Tamil;
+}
+
+.burmeseFont,
+.burmeseFont * {
+  font-family: Burmese;
+}
+
+.amharicFont,
+.amharicFont * {
+  font-family: Amharic;
+}
+
+.thaiFont,
+.thaiFont * {
+  font-family: Thai;
+}
+
+.khmerFont,
+.khmerFont * {
+  font-family: Khmer;
+}
+
+.hindiFont,
+.hindiFont * {
+  font-family: Devanagari;
+}
+
+.georgianFont,
+.georgianFont * {
+  font-family: Georgian;
+}
+
+.tibetanFont,
+.tibetanFont * {
+  font-family: Tibetan;
+}
+
+.latinFontInvisible {
+  color: transparent;
+}
+
+.otherFontInvisible .arabicFont,
+.otherFontInvisible .armenianFont,
+.otherFontInvisible .persianFont,
+.otherFontInvisible .hebrewFont,
+.otherFontInvisible .bengaliFont,
+.otherFontInvisible .inuktitutFont,
+.otherFontInvisible .chineseFont,
+.otherFontInvisible .japaneseFont,
+.otherFontInvisible .tamilFont,
+.otherFontInvisible .burmeseFont,
+.otherFontInvisible .amharicFont,
+.otherFontInvisible .thaiFont,
+.otherFontInvisible .khmerFont,
+.otherFontInvisible .hindiFont,
+.otherFontInvisible .georgianFont,
+.otherFontInvisible .tibetanFont {
+  color: rgba(256, 256, 256, 0);
+  transition: color 0.3s;
+}
+
+.otherFontInvisible .arabicFont:after,
+.otherFontInvisible .armenianFont:after,
+.otherFontInvisible .persianFont:after,
+.otherFontInvisible .hebrewFont:after,
+.otherFontInvisible .bengaliFont:after,
+.otherFontInvisible .inuktitutFont:after,
+.otherFontInvisible .chineseFont:after,
+.otherFontInvisible .japaneseFont:after,
+.otherFontInvisible .tamilFont:after,
+.otherFontInvisible .burmeseFont:after,
+.otherFontInvisible .amharicFont:after,
+.otherFontInvisible .thaiFont:after,
+.otherFontInvisible .khmerFont:after,
+.otherFontInvisible .hindiFont:after,
+.otherFontInvisible .georgianFont:after,
+.otherFontInvisible .tibetanFont:after {
+  content: '...';
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  bottom: 16px;
+  left: 16px;
+  background: #666;
+  animation: flicker 1s infinite;
+}
+
+@keyframes flicker {
+  0% {
+    background: #666;
+  }
+
+  50% {
+    background: #555;
+  }
+
+  100% {
+    background: #666;
+  }
+}
+
+.otherFontVisible .arabicFont,
+.otherFontVisible .arabicFont *,
+.otherFontVisible .armenianFont,
+.otherFontVisible .armenianFont *,
+.otherFontVisible .persianFont,
+.otherFontVisible .persianFont *,
+.otherFontVisible .hebrewFont,
+.otherFontVisible .hebrewFont *,
+.otherFontVisible .bengaliFont,
+.otherFontVisible .bengaliFont *,
+.otherFontVisible .inuktitutFont,
+.otherFontVisible .inuktitutFont *,
+.otherFontVisible .chineseFont,
+.otherFontVisible .chineseFont *,
+.otherFontVisible .japaneseFont,
+.otherFontVisible .japaneseFont *,
+.otherFontVisible .tamilFont,
+.otherFontVisible .tamilFont *,
+.otherFontVisible .burmeseFont,
+.otherFontVisible .burmeseFont *,
+.otherFontVisible .amharicFont,
+.otherFontVisible .amharicFont *,
+.otherFontVisible .thaiFont,
+.otherFontVisible .thaiFont *,
+.otherFontVisible .khmerFont,
+.otherFontVisible .khmerFont *,
+.otherFontVisible .hindiFont,
+.otherFontVisible .hindiFont *,
+.otherFontVisible .georgianFont,
+.otherFontVisible .georgianFont *,
+.otherFontVisible .tibetanFont,
+.otherFontVisible .tibetanFont * {
+  color: rgba(256, 256, 256, 1);
+  /* transition: color 0.3s; */
+  /* background: inherit; */
+}
+
+/*
+body {
+  position:fixed;
+  overflow: hidden;
+}
+
+main {
+  overflow-y: scroll;
+} */
+
+strong {
+  font-weight: bold;
+}
+
+@page {
+  margin: 0;
+  padding: 0;
+  size: 6in 9in;
+}
+
+@media print {
+  html,
+  body {
+    -webkit-print-color-adjust: exact;
+    /* overflow-y: auto; */
+    background: white;
+    color: #111;
+  }
+}
