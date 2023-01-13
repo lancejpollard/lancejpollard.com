@@ -8,6 +8,7 @@ type PropsType = {
 
 const Copy = styled.div({
   '*': {
+    fontFamily: 'text',
     fontSize: 16,
     lineHeight: 1.4,
   },
