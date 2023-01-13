@@ -1,3 +1,8 @@
+@import 'base.css';
+@import 'color.css';
+@import 'globals.css';
+@import 'theme.css';
+
 @font-face {
   font-family: text;
   src: url(/fonts/code.woff) format('woff'),

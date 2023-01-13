@@ -7,26 +7,6 @@ export default function Document() {
   return (
     <Html lang="en">
       <Head>
-        <link
-          rel="stylesheet"
-          href="/styles/base.css"
-        />
-        <link
-          rel="stylesheet"
-          href="/styles/index.css"
-        />
-        <link
-          rel="stylesheet"
-          href="/styles/color.css"
-        />
-        <link
-          rel="stylesheet"
-          href="/styles/globals.css"
-        />
-        <link
-          rel="stylesheet"
-          href="/styles/theme.css"
-        />
         {fontsPaths.map(font => (
           <link
             key={font}
