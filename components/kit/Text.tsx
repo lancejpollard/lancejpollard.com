@@ -1,7 +1,7 @@
 import React from 'react'
 import {
   AlignType,
-  BaseViewPropsType,
+  BaseInputPropsType,
   BreakTextMixinType,
   Font,
   FontMixinType,
@@ -9,22 +9,29 @@ import {
   TEXT_ALIGN,
   Theme,
 } from '@components/kit/styles'
-import styled, { CSSProperties, useTheme } from 'styled-components'
-import { useViewProps } from './useProps'
+import Factory from './Factory'
+import { CSSProperties } from 'styled-components'
 
-export const StyledText = styled.p({})
+export const PROP_LIST = [
+  'font',
+  'height',
+  'size',
+  'weight',
+  'breakEverywhere',
+  'breakWord',
+  'align',
+  'animation',
+  'fill',
+  'font',
+  'preserveNewLines',
+  'resizable',
+  'unselectable',
+]
 
-export type TextPropsType = {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  as?: string | React.ComponentType<any>
-  children?: React.ReactNode
-  id?: string
-  view?: TextViewPropsType | Array<TextViewPropsType>
-}
+export type TextPropsType = BaseInputPropsType<TextViewPropsType>
 
 export type TextViewPropsType = FontMixinType &
-  BreakTextMixinType &
-  BaseViewPropsType & {
+  BreakTextMixinType & {
     align?: AlignType
     animation?: string
     fill?: string
@@ -34,21 +41,9 @@ export type TextViewPropsType = FontMixinType &
     unselectable?: boolean
   }
 
-export default function Text({ view, as, id }: TextPropsType) {
-  const theme = useTheme()
-  const [viewProps, ref] = useViewProps(view, theme, serializeViewProps)
+export default Factory('p', PROP_LIST, serializeProps)
 
-  return (
-    <StyledText
-      as={as}
-      id={id}
-      ref={ref}
-      {...viewProps}
-    />
-  )
-}
-
-function serializeViewProps(
+function serializeProps(
   theme: Theme,
   props: TextViewPropsType,
 ): CSSProperties {

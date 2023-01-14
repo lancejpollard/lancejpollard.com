@@ -1,10 +1,9 @@
 import _ from 'lodash'
-import React from 'react'
 import {
   AbsolutePositionMixinType,
   ALIGN,
   AlignType,
-  BaseViewPropsType,
+  BaseInputPropsType,
   BorderRadiusMixinType,
   DimensionMixinType,
   DIRECTION,
@@ -21,22 +20,12 @@ import {
   SpacingMixinType,
   Theme,
 } from '@components/kit/styles'
-import styled, { useTheme } from 'styled-components'
-import { useViewProps } from './useProps'
+import { CSSProperties } from 'styled-components'
 import Factory from './Factory'
 
-export type BoxPropsType = Omit<
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  React.ComponentProps<any>,
-  'as' | 'view'
-> & {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  as?: string | React.ComponentType<any>
-  view?: BoxViewPropsType | Array<BoxViewPropsType>
-}
+export type BoxPropsType = BaseInputPropsType<BoxViewPropsType>
 
-export type BoxViewPropsType = BaseViewPropsType &
-  DimensionMixinType &
+export type BoxViewPropsType = DimensionMixinType &
   SpacingMixinType &
   OverflowMixinType &
   BorderRadiusMixinType &
@@ -58,26 +47,66 @@ export type BoxViewPropsType = BaseViewPropsType &
     wrap?: boolean
   }
 
-export default Factory('div')
+export const PROP_LIST: Array<string> = [
+  'align',
+  'animation',
+  'direction',
+  'fill',
+  'flex',
+  'gap',
+  'grow',
+  'hGap',
+  'invisible',
+  'justify',
+  'position',
+  'shrink',
+  'unselectable',
+  'vGap',
+  'wrap',
+  'bottom',
+  'left',
+  'right',
+  'top',
+  'borderRadius',
+  'round',
+  'queries',
+  'selectors',
+  'crop',
+  'cropX',
+  'cropY',
+  'scroll',
+  'scrollX',
+  'scrollY',
+  'margin',
+  'marginBottom',
+  'marginLeft',
+  'marginRight',
+  'marginTop',
+  'padding',
+  'paddingBottom',
+  'paddingHorizontal',
+  'paddingLeft',
+  'paddingRight',
+  'paddingTop',
+  'paddingVertical',
+  'height',
+  'maxHeight',
+  'maxWidth',
+  'minHeight',
+  'minWidth',
+  'width',
+]
 
-export default function Box({ view, as, ...otherProps }: BoxPropsType) {
-  const theme = useTheme()
-  const [viewProps, ref] = useViewProps(view, theme, serializeViewProps)
-
-  return (
-    <StyledBox
-      as={as}
-      ref={ref}
-      {...viewProps}
-      {...otherProps}
-    />
-  )
-}
+export default Factory<BoxViewPropsType>(
+  'div',
+  PROP_LIST,
+  serializeViewProps,
+)
 
 function serializeViewProps(
   theme: Theme,
   stateProps: BoxViewPropsType,
-): React.CSSProperties {
+): CSSProperties {
   return {
     alignItems: stateProps.align ? ALIGN[stateProps.align] : undefined,
     animation: stateProps.animation ? stateProps.animation : undefined,
@@ -174,5 +203,3 @@ function serializeViewProps(
       : undefined,
   }
 }
-
-export const StyledBox = styled.div({})

@@ -18,23 +18,44 @@ export type InputPropsType<T, I> = T extends Function
 
 export default function FactoryFactory<T>(
   as: string,
+  propNames: Array<string>,
   serializer: (theme: Theme, props: T) => CSSProperties,
 ) {
-  return function Factory<I>(inputProps: InputPropsType<T, I>) {
+  const propNamesMap = propNames.reduce<Record<string, boolean>>(
+    (m, x) => {
+      m[x] = true
+      return m
+    },
+    {},
+  )
+
+  return function Factory<I extends object>(
+    inputProps: InputPropsType<T, I>,
+  ) {
     const isPropsFunction = typeof inputProps === 'function'
     const Styled = styled.div<FactoryStyledPropsType>(
       props => props.styledProps,
     )
 
-    function Component(props: I) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    function Component(props: I, passedRef: React.ForwardedRef<any>) {
       const actualProps = isPropsFunction
         ? (inputProps as InputPropsFunctionType<I, T>)(props)
         : props
+
+      const elementProps: Record<string, unknown> = {}
+      Object.keys(props).forEach(key => {
+        if (!(key in propNamesMap)) {
+          elementProps[key] = props[key]
+        }
+      })
+
       const theme = useTheme()
 
       const [styledProps, ref] = useProps(
         actualProps,
         theme,
+        passedRef,
         serializer,
       )
 
@@ -49,6 +70,6 @@ export default function FactoryFactory<T>(
 
     Component.toString = Styled.toString
 
-    return Component
+    return React.forwardRef(Component)
   }
 }

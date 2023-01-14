@@ -16,6 +16,8 @@ export type DimensionsType = {
 export default function useProps<T extends object>(
   input: BaseInputPropsType<T> | undefined,
   theme: Theme,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  passedRef: React.ForwardedRef<any>,
   converter: (
     theme: Theme,
     input: BaseInputPropsType<T>,
@@ -27,6 +29,7 @@ export default function useProps<T extends object>(
   const [parentDimensions, setParentDimensions] =
     useState<DimensionsType>()
   const ref = useRef<HTMLElement>(null)
+  const localRef = (passedRef || ref) as React.RefObject<HTMLElement>
 
   useEffect(() => {
     let watchesParent = false
@@ -65,7 +68,7 @@ export default function useProps<T extends object>(
 
     let observer: ResizeObserver
 
-    if (watchesParent && ref.current) {
+    if (watchesParent && localRef.current) {
       observer = new ResizeObserver(entries => {
         const element = entries[0]
         if (element) {
@@ -79,9 +82,10 @@ export default function useProps<T extends object>(
         }
       })
 
-      observer.observe(ref.current)
+      observer.observe(localRef.current)
 
-      const rect = ref.current?.parentElement?.getBoundingClientRect()
+      const rect =
+        localRef.current?.parentElement?.getBoundingClientRect()
       const width = rect?.width ?? 0
       const height = rect?.height ?? 0
 
@@ -100,7 +104,7 @@ export default function useProps<T extends object>(
     return () => {
       observer?.disconnect()
     }
-  }, [ref, converter, input, theme])
+  }, [localRef, converter, input, theme])
 
   useEffect(() => {
     const defaultProps = propsArray?.[0]
@@ -121,7 +125,7 @@ export default function useProps<T extends object>(
     }
   }, [propsArray, parentDimensions, setProps])
 
-  return [props, ref]
+  return [props, localRef]
 }
 
 function selectPropsMatchingDimensions(
