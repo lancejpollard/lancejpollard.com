@@ -9,6 +9,11 @@ const Wall = Box(props => ({
   animation: props.theme.animations.fadeIn('2s'),
   direction: 'vertical' as const,
   opacity: 0,
+  selectors: {
+    '*': {
+      fontFamily: 'text',
+    },
+  },
   width: '100%',
 }))
 

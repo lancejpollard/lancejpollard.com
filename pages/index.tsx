@@ -48,7 +48,7 @@ const FireContainer = Box({
 
 const HoleContainer = Box({
   marginTop: 128,
-  minHeight: '100vh',
+  // minHeight: '100vh',
 })
 
 const LandContainer = Box({
