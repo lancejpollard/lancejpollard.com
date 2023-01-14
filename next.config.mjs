@@ -1,6 +1,7 @@
 /** @type {import('next').NextConfig} */
 import createMDXPlugin from '@next/mdx'
 import rehypeRaw from 'rehype-raw'
+import remarkMdx from 'remark-mdx'
 
 const mdxConfig = {
   extension: /\.mdx?$/,
@@ -10,7 +11,7 @@ const mdxConfig = {
     // If you use remark-gfm, you'll need to use next.config.mjs
     // as the package is ESM only
     // https://github.com/remarkjs/remark-gfm#install
-    remarkPlugins: [],
+    remarkPlugins: [remarkMdx],
   },
 }
 
