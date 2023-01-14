@@ -3,9 +3,13 @@ import {
   AlignType,
   BaseInputPropsType,
   BreakTextMixinType,
+  DimensionMixinType,
   Font,
   FontMixinType,
+  getDimensionMixin,
+  getSpacingMixin,
   getWordBreak,
+  SpacingMixinType,
   TEXT_ALIGN,
   Theme,
 } from '@components/kit/styles'
@@ -26,12 +30,34 @@ export const PROP_LIST = [
   'preserveNewLines',
   'resizable',
   'unselectable',
+  'margin',
+  'marginBottom',
+  'marginLeft',
+  'marginRight',
+  'marginTop',
+  'marginHorizontal',
+  'marginVertical',
+  'padding',
+  'paddingBottom',
+  'paddingHorizontal',
+  'paddingLeft',
+  'paddingRight',
+  'paddingTop',
+  'paddingVertical',
+  'height',
+  'maxHeight',
+  'maxWidth',
+  'minHeight',
+  'minWidth',
+  'width',
 ]
 
 export type TextPropsType = BaseInputPropsType<TextViewPropsType>
 
 export type TextViewPropsType = FontMixinType &
-  BreakTextMixinType & {
+  DimensionMixinType &
+  BreakTextMixinType &
+  SpacingMixinType & {
     align?: AlignType
     animation?: string
     fill?: string
@@ -48,6 +74,8 @@ function serializeProps(
   props: TextViewPropsType,
 ): CSSObject {
   return {
+    ...getSpacingMixin(props),
+    ...getDimensionMixin(props),
     animation: props.animation ? props.animation : undefined,
     color: props.fill ? props.fill : undefined,
     fontFamily: props.font

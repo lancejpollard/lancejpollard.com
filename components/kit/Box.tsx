@@ -14,6 +14,7 @@ import {
   getNumberOrStringAspect,
   getOverflow,
   getOverflowAspect,
+  getSpacingMixin,
   JUSTIFY,
   JustifyType,
   OverflowMixinType,
@@ -83,6 +84,8 @@ export const PROP_LIST: Array<string> = [
   'marginLeft',
   'marginRight',
   'marginTop',
+  'marginHorizontal',
+  'marginVertical',
   'padding',
   'paddingBottom',
   'paddingHorizontal',
@@ -110,6 +113,7 @@ function serializeViewProps(
 ): CSSObject {
   return {
     ...getDimensionMixin(stateProps),
+    ...getSpacingMixin(stateProps),
     alignItems: stateProps.align ? ALIGN[stateProps.align] : undefined,
     animation: stateProps.animation ? stateProps.animation : undefined,
     backgroundColor: stateProps.fill ? stateProps.fill : undefined,
@@ -135,47 +139,9 @@ function serializeViewProps(
     left: stateProps.left
       ? getNumberOrString(stateProps.left)
       : undefined,
-    margin: stateProps.margin
-      ? getNumberOrString(stateProps.margin)
-      : undefined,
-    marginBottom: getNumberOrStringAspect(stateProps, [
-      'marginBottom',
-      'marginVertical',
-    ]),
-    marginLeft: getNumberOrStringAspect(stateProps, [
-      'marginLeft',
-      'marginHorizontal',
-    ]),
-    marginRight: getNumberOrStringAspect(stateProps, [
-      'marginRight',
-      'marginHorizontal',
-    ]),
-    marginTop: getNumberOrStringAspect(stateProps, [
-      'marginTop',
-      'marginVertical',
-    ]),
     overflow: getOverflow(stateProps),
     overflowX: getOverflowAspect(stateProps, 'X'),
     overflowY: getOverflowAspect(stateProps, 'Y'),
-    padding: stateProps.padding
-      ? getNumberOrString(stateProps.padding)
-      : undefined,
-    paddingBottom: getNumberOrStringAspect(stateProps, [
-      'paddingBottom',
-      'paddingVertical',
-    ]),
-    paddingLeft: getNumberOrStringAspect(stateProps, [
-      'paddingLeft',
-      'paddingHorizontal',
-    ]),
-    paddingRight: getNumberOrStringAspect(stateProps, [
-      'paddingRight',
-      'paddingHorizontal',
-    ]),
-    paddingTop: getNumberOrStringAspect(stateProps, [
-      'paddingTop',
-      'paddingVertical',
-    ]),
     position: stateProps.position ? stateProps.position : undefined,
     right: stateProps.right
       ? getNumberOrString(stateProps.right)

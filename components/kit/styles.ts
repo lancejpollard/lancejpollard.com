@@ -103,9 +103,11 @@ export type QueryType = {
 export type SpacingMixinType = {
   margin?: number | string
   marginBottom?: string | number
+  marginHorizontal?: string | number
   marginLeft?: string | number
   marginRight?: string | number
   marginTop?: string | number
+  marginVertical?: string | number
   padding?: number | string
   paddingBottom?: string | number
   paddingHorizontal?: string | number
@@ -198,6 +200,47 @@ export function getOverflowAspect(
 
   if (props[`scroll${aspect}` as keyof OverflowMixinType]) {
     return 'auto'
+  }
+}
+
+export function getSpacingMixin(props: SpacingMixinType): CSSObject {
+  return {
+    margin: props.margin ? getNumberOrString(props.margin) : undefined,
+    marginBottom: getNumberOrStringAspect(props, [
+      'marginBottom',
+      'marginVertical',
+    ]),
+    marginLeft: getNumberOrStringAspect(props, [
+      'marginLeft',
+      'marginHorizontal',
+    ]),
+    marginRight: getNumberOrStringAspect(props, [
+      'marginRight',
+      'marginHorizontal',
+    ]),
+    marginTop: getNumberOrStringAspect(props, [
+      'marginTop',
+      'marginVertical',
+    ]),
+    padding: props.padding
+      ? getNumberOrString(props.padding)
+      : undefined,
+    paddingBottom: getNumberOrStringAspect(props, [
+      'paddingBottom',
+      'paddingVertical',
+    ]),
+    paddingLeft: getNumberOrStringAspect(props, [
+      'paddingLeft',
+      'paddingHorizontal',
+    ]),
+    paddingRight: getNumberOrStringAspect(props, [
+      'paddingRight',
+      'paddingHorizontal',
+    ]),
+    paddingTop: getNumberOrStringAspect(props, [
+      'paddingTop',
+      'paddingVertical',
+    ]),
   }
 }
 
