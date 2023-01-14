@@ -1,8 +1,9 @@
 import Layout from './Layout'
 import { PagePropsType } from '@components/kit/Page'
 import React from 'react'
-import { Box, Text, Texture } from './kit'
+import { Box, Content, Text, Texture } from './kit'
 import theme from '@configurations/theme'
+import '../package'
 
 export type PostLayoutPropsType = PagePropsType & {
   children: React.ReactNode
@@ -26,10 +27,32 @@ const HeaderTexture = Texture({
 
 const Title = Text({
   as: 'h1',
+  fontFamily: 'text',
+  fontSize: 16,
   marginVertical: 32,
+  maxWidth: 672,
   paddingHorizontal: 16,
+  width: '100%',
+})
+
+const Body = Box({
+  // align: 'center' as const,
+  justify: 'center' as const,
+  marginVertical: 64,
+  minHeight: '100vh',
+  selectors: {
+    '*': {
+      fontFamily: 'text',
+    },
+  },
   size: 16,
-  width: 672,
+  width: '100%',
+})
+
+const BodyCenter = Box({
+  maxWidth: 672,
+  paddingHorizontal: 16,
+  width: '100%',
 })
 
 export default function PostLayout({
@@ -46,10 +69,15 @@ export default function PostLayout({
       note={note}
       tags={tags}
     >
-      <Header>
-        <HeaderTexture />
-        <Title>{tab}</Title>
-      </Header>
+      <Content>
+        <Header>
+          <HeaderTexture />
+          <Title>{tab}</Title>
+        </Header>
+        <Body>
+          <BodyCenter>{children}</BodyCenter>
+        </Body>
+      </Content>
       {/* <section class="move w100v minh100v v">
         <div class="hc fs16 mtb64">
           <div class="maxw672 zvw672minw672 plr16">

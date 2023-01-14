@@ -1,11 +1,13 @@
 import {
-  AbsolutePositionMixinType,
   getBorderRadius,
   getDimensionMixin,
   getNumberOrString,
+} from '@components/kit/styles'
+import {
+  AbsolutePositionMixinType,
   PositionType,
   Theme,
-} from '@components/kit/styles'
+} from '@components/kit/types'
 import { CSSObject } from 'styled-components'
 import Factory from './Factory'
 

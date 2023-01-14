@@ -1,17 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import _ from 'lodash'
-import React, {
-  ComponentType,
-  useEffect,
-  useRef,
-  useState,
-} from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { CSSObject } from 'styled-components'
-import {
-  BaseInputPropsType,
-  BaseMatchInputPropsType,
-  QueryType,
-} from './styles'
+import { BaseInputPropsType, QueryType } from './types'
 
 type BasicRecord = Record<string, unknown>
 
@@ -100,6 +91,16 @@ export default function useProps<
             })
           }
         }
+      })
+    }
+
+    const { selectors } = input
+
+    if (selectors) {
+      Object.keys(selectors).forEach(selector => {
+        const selectorProps = selectors[selector]
+        const childProps = converter(theme, selectorProps)
+        defaultChildProps[selector] = childProps
       })
     }
 

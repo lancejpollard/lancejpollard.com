@@ -1,4 +1,6 @@
-export const FONT: Record<keyof Font, string> = {
+import { Font } from '@components/kit/types'
+
+export const FONT: Record<string, string> = {
   amharic: 'Amharic',
   arabic: 'Arabic',
   armenian: 'Armenian',
@@ -17,29 +19,7 @@ export const FONT: Record<keyof Font, string> = {
   malayalam: 'Malayalam',
   persian: 'Persian',
   tamil: 'Tamil',
+  text: 'text',
   thai: 'Thai',
   tibetan: 'Tibetan',
-}
-
-export interface Font {
-  amharic: true
-  arabic: true
-  armenian: true
-  bengali: true
-  burmese: true
-  chinese: true
-  georgian: true
-  hebrew: true
-  hindi: true
-  inuktitut: true
-  japanese: true
-  kannada: true
-  khmer: true
-  korean: true
-  latin: true
-  malayalam: true
-  persian: true
-  tamil: true
-  thai: true
-  tibetan: true
 }

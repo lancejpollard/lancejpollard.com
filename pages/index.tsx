@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import {
   GetServerSidePropsType,
   GetServerSideResultType,
@@ -16,7 +16,7 @@ import Layout from '@components/Layout'
 import Markdown from '@components/kit/Markdown'
 
 const QuestionMark = Text({
-  size: 120,
+  fontSize: 120,
 })
 
 const DescriptionCenter = Box({
@@ -165,6 +165,11 @@ const RockTexture = Texture({
 })
 
 export default function Page({ url, tab, note, tags }: PagePropsType) {
+  // useEffect(() => {
+  //   console.log(document.querySelector('#rabbit'))
+  //   document.querySelector('#rabbit')?.scrollIntoView()
+  // }, [])
+
   return (
     <Layout
       url={url}

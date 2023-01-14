@@ -1,32 +1,34 @@
 import React from 'react'
 import {
+  getDimensionMixin,
+  getFontMixin,
+  getSpacingMixin,
+  getWordBreak,
+  TEXT_ALIGN,
+} from '@components/kit/styles'
+import {
+  Font,
   AlignType,
   BaseInputPropsType,
   BreakTextMixinType,
   DimensionMixinType,
-  Font,
   FontMixinType,
-  getDimensionMixin,
-  getSpacingMixin,
-  getWordBreak,
   SpacingMixinType,
-  TEXT_ALIGN,
   Theme,
-} from '@components/kit/styles'
+} from '@components/kit/types'
 import Factory from './Factory'
 import { CSSObject } from 'styled-components'
 
 export const PROP_LIST = [
-  'font',
-  'height',
-  'size',
-  'weight',
+  'fontFamily',
+  'fontHeight',
+  'fontSize',
+  'fontWeight',
   'breakEverywhere',
   'breakWord',
   'align',
   'animation',
   'fill',
-  'font',
   'preserveNewLines',
   'resizable',
   'unselectable',
@@ -76,14 +78,9 @@ function serializeProps(
   return {
     ...getSpacingMixin(props),
     ...getDimensionMixin(props),
+    ...getFontMixin(theme, props),
     animation: props.animation ? props.animation : undefined,
     color: props.fill ? props.fill : undefined,
-    fontFamily: props.font
-      ? `${theme.fonts[props.font]}, text`
-      : 'text',
-    fontSize: props.size ? `${props.size}px` : undefined,
-    fontWeight: props.weight ? props.weight : undefined,
-    lineHeight: props.height ? props.height : undefined,
     overflowWrap: props.breakWord ? 'break-word' : undefined,
     resize: props.resizable ? 'both' : undefined,
     textAlign: props.align ? TEXT_ALIGN[props.align] : undefined,

@@ -1,33 +1,37 @@
 import _ from 'lodash'
 import {
-  AbsolutePositionMixinType,
-  ALIGN,
-  AlignType,
-  BaseInputPropsType,
-  BorderRadiusMixinType,
-  DimensionMixinType,
-  DIRECTION,
-  DirectionType,
   getBorderRadius,
   getDimensionMixin,
+  getFontMixin,
   getNumberOrString,
-  getNumberOrStringAspect,
+  ALIGN,
+  DIRECTION,
   getOverflow,
   getOverflowAspect,
   getSpacingMixin,
   JUSTIFY,
+} from '@components/kit/styles'
+import {
+  AbsolutePositionMixinType,
+  AlignType,
+  BaseInputPropsType,
+  BorderRadiusMixinType,
+  DimensionMixinType,
+  DirectionType,
+  FontMixinType,
   JustifyType,
   OverflowMixinType,
   PositionType,
   SpacingMixinType,
   Theme,
-} from '@components/kit/styles'
+} from '@components/kit/types'
 import { CSSObject } from 'styled-components'
 import Factory from './Factory'
 
 export type BoxPropsType = BaseInputPropsType<BoxViewPropsType>
 
-export type BoxViewPropsType = DimensionMixinType &
+export type BoxViewPropsType = FontMixinType &
+  DimensionMixinType &
   SpacingMixinType &
   OverflowMixinType &
   BorderRadiusMixinType &
@@ -99,6 +103,10 @@ export const PROP_LIST: Array<string> = [
   'minHeight',
   'minWidth',
   'width',
+  'fontFamily',
+  'fontHeight',
+  'fontSize',
+  'fontWeight',
 ]
 
 export default Factory<BoxViewPropsType, Theme>(
@@ -114,6 +122,7 @@ function serializeViewProps(
   return {
     ...getDimensionMixin(stateProps),
     ...getSpacingMixin(stateProps),
+    ...getFontMixin(theme, stateProps),
     alignItems: stateProps.align ? ALIGN[stateProps.align] : undefined,
     animation: stateProps.animation ? stateProps.animation : undefined,
     backgroundColor: stateProps.fill ? stateProps.fill : undefined,

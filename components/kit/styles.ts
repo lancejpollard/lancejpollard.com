@@ -1,59 +1,17 @@
 import { Property } from 'csstype'
 import { CSSObject } from 'styled-components'
-
-export type AbsolutePositionMixinType = {
-  bottom?: number | string
-  left?: number | string
-  right?: number | string
-  top?: number | string
-}
-
-export type AlignType = 'center' | 'end' | 'start'
-
-export type BaseInputPropsType<T extends object> = T & {
-  queries?: Array<BaseMatchInputPropsType<T>>
-  selectors?: Record<string, T>
-}
-
-export type BaseMatchInputPropsType<T extends object> = T & {
-  match?: QueryType
-  selectors?: Record<string, T>
-}
-
-export type BorderRadiusMixinType = {
-  borderRadius?: string | number
-  round?: boolean
-}
-
-export type DirectionType = 'horizontal' | 'vertical'
-
-export interface Font {
-  arial: true
-}
-
-export type FontMixinType = {
-  font?: keyof Font
-  height?: number | string
-  size?: number
-  weight?: number
-}
-
-export type JustifyType = 'between' | 'center' | 'end'
-
-export type OverflowMixinType = {
-  crop?: boolean
-  cropX?: boolean
-  cropY?: boolean
-  scroll?: boolean
-  scrollX?: boolean
-  scrollY?: boolean
-}
-
-export type PositionType = 'absolute' | 'relative' | 'fixed'
-
-export interface Theme {
-  fonts: Record<keyof Font, string>
-}
+import {
+  AlignType,
+  BorderRadiusMixinType,
+  BreakTextMixinType,
+  DimensionMixinType,
+  DirectionType,
+  FontMixinType,
+  JustifyType,
+  OverflowMixinType,
+  SpacingMixinType,
+  Theme,
+} from './types'
 
 // eslint-disable-next-line sort-exports/sort-exports
 export const DIRECTION: Record<DirectionType, Property.FlexDirection> =
@@ -74,47 +32,6 @@ export const ALIGN: Record<AlignType, string> = {
   center: 'center',
   end: 'end',
   start: 'start',
-}
-
-export type BreakTextMixinType = {
-  breakEverywhere?: boolean
-  breakWord?: boolean
-}
-
-export type DimensionMixinType = {
-  height?: number | string
-  maxHeight?: number | string
-  maxWidth?: number | string
-  minHeight?: number | string
-  minWidth?: number | string
-  width?: number | string
-}
-
-export type QueryElementType = 'parent' | 'window'
-
-export type QueryType = {
-  element: QueryElementType
-  maxHeight?: number
-  maxWidth?: number
-  minHeight?: number
-  minWidth?: number
-}
-
-export type SpacingMixinType = {
-  margin?: number | string
-  marginBottom?: string | number
-  marginHorizontal?: string | number
-  marginLeft?: string | number
-  marginRight?: string | number
-  marginTop?: string | number
-  marginVertical?: string | number
-  padding?: number | string
-  paddingBottom?: string | number
-  paddingHorizontal?: string | number
-  paddingLeft?: string | number
-  paddingRight?: string | number
-  paddingTop?: string | number
-  paddingVertical?: string | number
 }
 
 // eslint-disable-next-line sort-exports/sort-exports, @typescript-eslint/no-explicit-any
@@ -154,6 +71,17 @@ export function getDimensionMixin(
       : undefined,
 
     width: props.width ? getNumberOrString(props.width) : undefined,
+  }
+}
+
+export function getFontMixin(theme: Theme, props: FontMixinType) {
+  return {
+    fontFamily: props.fontFamily
+      ? theme.fonts[props.fontFamily]
+      : undefined,
+    fontSize: props.fontSize ? `${props.fontSize}px` : undefined,
+    fontWeight: props.fontWeight ? props.fontWeight : undefined,
+    lineHeight: props.fontHeight ? props.fontHeight : undefined,
   }
 }
 

@@ -2,7 +2,7 @@
 import _ from 'lodash'
 import React from 'react'
 import styled, { CSSObject, useTheme } from 'styled-components'
-import { BaseInputPropsType } from './styles'
+import { BaseInputPropsType } from './types'
 import useProps from './useProps'
 
 export type FactoryPropsType = {
