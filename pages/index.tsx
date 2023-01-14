@@ -108,6 +108,76 @@ const TubeContainer = Box({
   width: '100%',
 })
 
+const FireTexture = Texture({
+  anchor: theme.anchors.center,
+  animation: theme.animations.spin,
+  center: true,
+  contain: true,
+  fill: theme.images.fire,
+  fitContent: true,
+  round: true,
+  width: '100%',
+})
+
+const StartTexture = Texture({
+  fill: theme.images.star,
+  mask: theme.gradients.band,
+  repeat: true,
+  size: 384,
+  stretch: true,
+})
+
+const MoonTexture = Texture({
+  as: 'img',
+  draggable: 'false',
+  src: '/images/moon.png',
+  width: 300,
+})
+
+const LandTexture = Texture({
+  as: 'img',
+  draggable: 'false',
+  mask: theme.gradients.band2,
+  src: '/images/land.png',
+  width: '100%',
+})
+
+const FaceTexture = Texture({
+  animation: theme.animations.jump.slow,
+  center: true,
+  contain: true,
+  fill: theme.images.face,
+  height: '100%',
+  width: '100%',
+})
+
+const HoleTexture = Texture({
+  as: 'img',
+  center: true,
+  draggable: 'false',
+  mask: theme.gradients.band,
+  src: theme.images.hole,
+  width: '100%',
+})
+
+const TubeTexture = Texture({
+  fill: theme.images.tube,
+  mask: theme.gradients.band,
+  opacity: 0.7,
+  repeat: true,
+  size: 672,
+  stretch: true,
+})
+
+const RockTexture = Texture({
+  fill: theme.images.rock,
+  mask: theme.gradients.band,
+  opacity: 0.7,
+  repeat: true,
+  size: 384,
+  stretch: true,
+})
+
 export default function Page({ url, tab, note, tags }: PagePropsType) {
   return (
     <Layout
@@ -118,25 +188,10 @@ export default function Page({ url, tab, note, tags }: PagePropsType) {
     >
       <Content>
         <FireContainer as="section">
-          <Texture
-            fitContent
-            width="100%"
-            center
-            fill={theme.images.fire}
-            anchor={theme.anchors.center}
-            animation={theme.animations.spin}
-            contain
-            round
-          />
+          <FireTexture />
         </FireContainer>
         <StarContainer>
-          <Texture
-            stretch
-            fill={theme.images.star}
-            repeat
-            size={384}
-            mask={theme.gradients.band}
-          />
+          <StartTexture />
         </StarContainer>
         <PoemContainer>
           <PoemCenter>
@@ -146,51 +201,19 @@ export default function Page({ url, tab, note, tags }: PagePropsType) {
           </PoemCenter>
         </PoemContainer>
         <MoonContainer>
-          <Texture
-            as="img"
-            draggable="false"
-            width={300}
-            src="/images/moon.png"
-          />
+          <MoonTexture />
         </MoonContainer>
         <LandContainer>
-          <Texture
-            as="img"
-            draggable="false"
-            width="100%"
-            src="/images/land.png"
-            mask={theme.gradients.band2}
-          />
+          <LandTexture />
         </LandContainer>
         <FaceContainer id="rabbit">
-          <Texture
-            width="100%"
-            height="100%"
-            fill={theme.images.face}
-            center
-            contain
-            animation={theme.animations.jump.slow}
-          />
+          <FaceTexture />
         </FaceContainer>
         <HoleContainer>
-          <Texture
-            as="img"
-            width="100%"
-            src={theme.images.hole}
-            center
-            draggable="false"
-            mask={theme.gradients.band}
-          />
+          <HoleTexture />
         </HoleContainer>
         <TubeContainer>
-          <Texture
-            stretch
-            opacity={0.7}
-            fill={theme.images.tube}
-            size={672}
-            repeat
-            mask={theme.gradients.band}
-          />
+          <TubeTexture />
         </TubeContainer>
         <DescriptionContainer>
           <DescriptionCenter>
@@ -200,14 +223,7 @@ export default function Page({ url, tab, note, tags }: PagePropsType) {
           </DescriptionCenter>
         </DescriptionContainer>
         <RockContainer>
-          <Texture
-            stretch
-            opacity={0.7}
-            fill={theme.images.rock}
-            size={384}
-            repeat
-            mask={theme.gradients.band}
-          />
+          <RockTexture />
         </RockContainer>
         <LinkContainer>
           <Link.External href="https://github.com/lancejpollard">

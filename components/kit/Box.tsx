@@ -9,6 +9,7 @@ import {
   DIRECTION,
   DirectionType,
   getBorderRadius,
+  getDimensionMixin,
   getNumberOrString,
   getNumberOrStringAspect,
   getOverflow,
@@ -108,6 +109,7 @@ function serializeViewProps(
   stateProps: BoxViewPropsType,
 ): CSSObject {
   return {
+    ...getDimensionMixin(stateProps),
     alignItems: stateProps.align ? ALIGN[stateProps.align] : undefined,
     animation: stateProps.animation ? stateProps.animation : undefined,
     backgroundColor: stateProps.fill ? stateProps.fill : undefined,
@@ -127,9 +129,6 @@ function serializeViewProps(
     flexShrink: stateProps.shrink ? 1 : 0,
     flexWrap: stateProps.wrap ? 'wrap' : undefined,
     gap: stateProps.gap ? getNumberOrString(stateProps.gap) : undefined,
-    height: stateProps.height
-      ? getNumberOrString(stateProps.height)
-      : undefined,
     justifyContent: stateProps.justify
       ? JUSTIFY[stateProps.justify]
       : undefined,
@@ -155,18 +154,6 @@ function serializeViewProps(
       'marginTop',
       'marginVertical',
     ]),
-    maxHeight: stateProps.maxHeight
-      ? getNumberOrString(stateProps.maxHeight)
-      : undefined,
-    maxWidth: stateProps.maxWidth
-      ? getNumberOrString(stateProps.maxWidth)
-      : undefined,
-    minHeight: stateProps.minHeight
-      ? getNumberOrString(stateProps.minHeight)
-      : undefined,
-    minWidth: stateProps.minWidth
-      ? getNumberOrString(stateProps.minWidth)
-      : undefined,
     overflow: getOverflow(stateProps),
     overflowX: getOverflowAspect(stateProps, 'X'),
     overflowY: getOverflowAspect(stateProps, 'Y'),
@@ -198,8 +185,5 @@ function serializeViewProps(
       : undefined,
     top: stateProps.top ? getNumberOrString(stateProps.top) : undefined,
     visibility: stateProps.invisible ? 'hidden' : undefined,
-    width: stateProps.width
-      ? getNumberOrString(stateProps.width)
-      : undefined,
   }
 }

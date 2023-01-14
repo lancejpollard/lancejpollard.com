@@ -1,11 +1,15 @@
 import {
   AbsolutePositionMixinType,
+  getBorderRadius,
+  getDimensionMixin,
+  getNumberOrString,
   PositionType,
+  Theme,
 } from '@components/kit/styles'
-import React from 'react'
-import styled, { css } from 'styled-components'
+import { CSSObject } from 'styled-components'
+import Factory from './Factory'
 
-type PropsType = AbsolutePositionMixinType & {
+type TextureViewPropsType = AbsolutePositionMixinType & {
   anchor?: string
   animation?: string
   borderRadius?: string | number
@@ -28,94 +32,96 @@ type PropsType = AbsolutePositionMixinType & {
   width?: number | string
 }
 
-const FIT_CONTENT_MIXIN = css`
-  height: 0;
-  padding-top: 100%;
-  background-size: contain;
-`
-
-const STRETCH_MIXIN = css`
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-`
-
-export const ABSOLUTE_POSITION_PROPERTIES = css<AbsolutePositionMixinType>`
-  ${({ top }) =>
-    top && `top: ${typeof top === 'number' ? `${top}px` : top};`}
-  ${({ right }) =>
-    right &&
-    `right: ${typeof right === 'number' ? `${right}px` : right};`}
-  ${({ bottom }) =>
-    bottom &&
-    `bottom: ${typeof bottom === 'number' ? `${bottom}px` : bottom};`}
-  ${({ left }) =>
-    left && `left: ${typeof left === 'number' ? `${left}px` : left};`}
-`
-
-const UNFORWARDED_PROPS = [
+export const PROP_LIST: Array<string> = [
+  'anchor',
+  'animation',
+  'borderRadius',
+  'center',
+  'contain',
+  'cover',
   'fill',
+  'fitContent',
   'height',
-  'width',
-  'direction',
   'mask',
+  'minHeight',
+  'minWidth',
+  'opacity',
+  'position',
+  'repeat',
+  'round',
+  'size',
+  'stretch',
+  'unselectable',
+  'width',
+  'bottom',
+  'left',
+  'right',
+  'top',
 ]
 
-const Texture = styled.div.withConfig({
-  shouldForwardProp(prop, isValidProp) {
-    return (
-      !UNFORWARDED_PROPS.includes(prop as string) && isValidProp(prop)
-    )
-  },
-})<PropsType>`
-  ${({ position }) => position && `position: ${position};`}
-  ${({ opacity }) => opacity && `opacity: ${opacity};`}
-  ${({ unselectable }) => unselectable && `user-select: none;`}
+export default Factory<TextureViewPropsType, Theme>(
+  'div',
+  PROP_LIST,
+  serializeProps,
+)
 
-  ${({ borderRadius }) =>
-    borderRadius &&
-    `border-radius: ${
-      typeof borderRadius === 'number'
-        ? `${borderRadius}px`
-        : borderRadius
-    }};`}
-  ${({ size }) =>
-    size &&
-    `background-size: ${
-      typeof size === 'number' ? `${size}px` : size
-    };`}
-  ${({ width }) =>
-    width &&
-    `width: ${typeof width === 'number' ? `${width}px` : width};`}
-  ${({ minWidth }) =>
-    minWidth &&
-    `min-width: ${
-      typeof minWidth === 'number' ? `${minWidth}px` : minWidth
-    };`}
-  ${({ height }) =>
-    height &&
-    `height: ${typeof height === 'number' ? `${height}px` : height};`}
-  ${({ minHeight }) =>
-    minHeight &&
-    `min-height: ${
-      typeof minHeight === 'number' ? `${minHeight}px` : minHeight
-    };`}
+function serializeProps(
+  theme: Theme,
+  props: TextureViewPropsType,
+): CSSObject {
+  return {
+    borderRadius: getBorderRadius(props),
+    opacity: props.opacity ? props.opacity : undefined,
+    position: props.position ? props.position : undefined,
+    userSelect: props.unselectable ? 'none' : undefined,
+    ...getDimensionMixin(props),
+    animation: props.animation ? props.animation : undefined,
+    backgroundImage: props.fill ? `url('${props.fill}')` : undefined,
+    backgroundRepeat: props.repeat ? 'repeat' : 'no-repeat',
+    backgroundSize: getBackgroundSize(props),
+    maskImage: props.mask ? props.mask : undefined,
+    transformOrigin: props.anchor ? props.anchor : undefined,
+    ...getFitContentMixin(props),
+    ...getStretchMixin(props),
+  }
+}
 
-  ${({ fill }) => fill && `background-image: url(${fill});`}
-  ${({ contain }) => contain && `background-size: contain;`}
-  ${({ cover }) => cover && `background-size: cover;`}
-  ${({ anchor }) => anchor && `transform-origin: ${anchor};`}
-  ${({ center }) => center && `background-position: center center;`}
-  ${({ repeat }) =>
-    `background-repeat: ${repeat ? 'repeat' : 'no-repeat'};`}
-  ${({ animation }) => animation && `animation: ${animation};`}
-  ${({ fitContent }) => fitContent && FIT_CONTENT_MIXIN}
-  ${({ stretch }) => stretch && STRETCH_MIXIN}
-  ${({ round }) => round && `border-radius: 50%;`}
-  ${({ mask }) => mask && `mask-image: ${mask};`}
-  ${ABSOLUTE_POSITION_PROPERTIES}
-`
+function getFitContentMixin(props: TextureViewPropsType): CSSObject {
+  if (props.fitContent) {
+    return {
+      backgroundSize: 'contain',
+      height: 0,
+      paddingTop: '100%',
+    }
+  }
 
-export default Texture
+  return {}
+}
+
+function getStretchMixin(props: TextureViewPropsType): CSSObject {
+  if (props.stretch) {
+    return {
+      bottom: 0,
+      left: 0,
+      position: 'absolute',
+      right: 0,
+      top: 0,
+    }
+  }
+
+  return {}
+}
+
+function getBackgroundSize(props: TextureViewPropsType) {
+  if (props.size) {
+    return getNumberOrString(props.size)
+  }
+
+  if (props.contain) {
+    return 'contain'
+  }
+
+  if (props.cover) {
+    return 'cover'
+  }
+}

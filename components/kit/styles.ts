@@ -1,4 +1,5 @@
 import { Property } from 'csstype'
+import { CSSObject } from 'styled-components'
 
 export type AbsolutePositionMixinType = {
   bottom?: number | string
@@ -129,6 +130,28 @@ export function getBorderRadius(
   }
   if (props.round) {
     return '50%'
+  }
+}
+
+export function getDimensionMixin(
+  props: DimensionMixinType,
+): CSSObject {
+  return {
+    height: props.height ? getNumberOrString(props.height) : undefined,
+    maxHeight: props.maxHeight
+      ? getNumberOrString(props.maxHeight)
+      : undefined,
+    maxWidth: props.maxWidth
+      ? getNumberOrString(props.maxWidth)
+      : undefined,
+    minHeight: props.minHeight
+      ? getNumberOrString(props.minHeight)
+      : undefined,
+    minWidth: props.minWidth
+      ? getNumberOrString(props.minWidth)
+      : undefined,
+
+    width: props.width ? getNumberOrString(props.width) : undefined,
   }
 }
 
