@@ -14,6 +14,7 @@ import Poem from '@contents/poem.md'
 import Description from '@contents/description.md'
 import Layout from '@components/Layout'
 import Copy from '@components/Copy'
+import useScrollIntoView from '@hooks/useScrollIntoView'
 
 const QuestionMark = Text({
   fontSize: 120,
@@ -155,20 +156,17 @@ const TubeTexture = Texture({
   stretch: true,
 })
 
-const RockTexture = Texture({
-  fill: theme.images.rock,
-  mask: theme.gradients.band,
+const RockTexture = Texture(props => ({
+  fill: props.theme.images.rock,
+  mask: props.theme.gradients.band,
   opacity: 0.7,
   repeat: true,
   size: 384,
   stretch: true,
-})
+}))
 
 export default function Page({ url, tab, note, tags }: PagePropsType) {
-  // useEffect(() => {
-  //   console.log(document.querySelector('#rabbit'))
-  //   document.querySelector('#rabbit')?.scrollIntoView()
-  // }, [])
+  // const rabbitRef = useScrollIntoView()
 
   return (
     <Layout

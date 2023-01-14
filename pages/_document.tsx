@@ -5,7 +5,7 @@ import Document, {
   NextScript,
   DocumentContext,
 } from 'next/document'
-import FONTS from 'configurations/fonts'
+import FONTS from '@configurations/fonts'
 import { ServerStyleSheet } from 'styled-components'
 
 const fontsPaths = Object.keys(FONTS).map(name => FONTS[name][0])

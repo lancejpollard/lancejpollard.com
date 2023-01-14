@@ -4,7 +4,7 @@ import { AppTheme } from '@configurations/theme'
 declare module '*.md'
 
 declare module 'styled-components' {
-  export interface DefaultTheme extends AppTheme {}
+  interface DefaultTheme extends AppTheme {}
 }
 
 declare module '@lancejpollard/kit' {
