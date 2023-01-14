@@ -22,7 +22,8 @@ import {
   Theme,
 } from '@components/kit/styles'
 import styled, { useTheme } from 'styled-components'
-import { useViewProps } from './useViewProps'
+import { useViewProps } from './useProps'
+import Factory from './Factory'
 
 export type BoxPropsType = Omit<
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -56,6 +57,8 @@ export type BoxViewPropsType = BaseViewPropsType &
     vGap?: string | number
     wrap?: boolean
   }
+
+export default Factory('div')
 
 export default function Box({ view, as, ...otherProps }: BoxPropsType) {
   const theme = useTheme()

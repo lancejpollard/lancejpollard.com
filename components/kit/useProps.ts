@@ -1,8 +1,10 @@
+import _ from 'lodash'
 import React, { useEffect, useRef, useState } from 'react'
 import { CSSProperties } from 'styled-components'
-import { BaseViewPropsType, Theme } from './styles'
+import { BaseInputPropsType, QueryType, Theme } from './styles'
 
-export type CompiledViewPropsType = BaseViewPropsType & {
+export type CompiledViewPropsType = {
+  match?: QueryType
   props: CSSProperties
 }
 
@@ -11,10 +13,13 @@ export type DimensionsType = {
   width: number
 }
 
-export function useViewProps(
-  view: BaseViewPropsType | Array<BaseViewPropsType> | undefined,
+export default function useProps<T extends object>(
+  input: BaseInputPropsType<T> | undefined,
   theme: Theme,
-  converter: (theme: Theme, view: BaseViewPropsType) => CSSProperties,
+  converter: (
+    theme: Theme,
+    input: BaseInputPropsType<T>,
+  ) => CSSProperties,
 ): [CSSProperties, React.RefObject<HTMLElement>] {
   const [props, setProps] = useState<CSSProperties>({})
   const [propsArray, setPropsArray] =
@@ -24,38 +29,35 @@ export function useViewProps(
   const ref = useRef<HTMLElement>(null)
 
   useEffect(() => {
-    const states: Array<BaseViewPropsType> = []
-    if (view) {
-      if (Array.isArray(view)) {
-        states.push(...view)
-      } else {
-        states.push(view)
-      }
-    }
-
     let watchesParent = false
 
     let defaultChildProps: CSSProperties = {}
     const childPropsArray: Array<CompiledViewPropsType> = [
       { props: defaultChildProps },
     ]
-    states.forEach(viewProps => {
-      const childProps = converter(theme, viewProps)
-      if (viewProps.query) {
-        if (viewProps.query.element === 'window') {
-          const mediaParts = []
-          _.merge(defaultChildProps)
-        } else {
-          watchesParent = true
-          childPropsArray.push({
-            props: childProps,
-            query: viewProps.query,
-          })
-        }
-      } else {
-        _.merge(defaultChildProps, childProps)
+
+    if (input) {
+      const childProps = converter(theme, input)
+      _.merge(defaultChildProps, childProps)
+
+      if (input.queries) {
+        input.queries.forEach(query => {
+          const childProps = converter(theme, query)
+          if (query.match) {
+            if (query.match.element === 'window') {
+              const mediaParts = []
+              _.merge(defaultChildProps)
+            } else {
+              watchesParent = true
+              childPropsArray.push({
+                match: query.match,
+                props: childProps,
+              })
+            }
+          }
+        })
       }
-    })
+    }
 
     childPropsArray.slice(1).forEach(childProps => {
       _.defaultsDeep(childProps, defaultChildProps)
@@ -98,7 +100,7 @@ export function useViewProps(
     return () => {
       observer?.disconnect()
     }
-  }, [ref, converter, view])
+  }, [ref, converter, input, theme])
 
   useEffect(() => {
     const defaultProps = propsArray?.[0]
@@ -127,21 +129,21 @@ function selectPropsMatchingDimensions(
   dimensions: DimensionsType,
 ): CSSProperties | undefined {
   for (const info of array) {
-    const { query, props } = info
-    if (query) {
-      if (query.minWidth && query.maxWidth) {
+    const { match, props } = info
+    if (match) {
+      if (match.minWidth && match.maxWidth) {
         if (
-          dimensions.width >= query.minWidth &&
-          query.maxWidth < dimensions.width
+          dimensions.width >= match.minWidth &&
+          match.maxWidth < dimensions.width
         ) {
           return props
         }
-      } else if (query.minWidth) {
-        if (dimensions.width >= query.minWidth) {
+      } else if (match.minWidth) {
+        if (dimensions.width >= match.minWidth) {
           return props
         }
-      } else if (query.maxWidth) {
-        if (query.maxWidth < dimensions.width) {
+      } else if (match.maxWidth) {
+        if (match.maxWidth < dimensions.width) {
           return props
         }
       }

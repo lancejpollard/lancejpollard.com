@@ -9,8 +9,14 @@ export type AbsolutePositionMixinType = {
 
 export type AlignType = 'center' | 'end' | 'start'
 
-export type BaseViewPropsType = {
-  query?: QueryType
+export type BaseInputPropsType<T> = {
+  queries?: Array<BaseMatchInputPropsType<T>>
+  selectors?: Record<string, T>
+}
+
+export type BaseMatchInputPropsType<T extends object> = T & {
+  match?: QueryType
+  selectors?: Record<string, T>
 }
 
 export type BorderRadiusMixinType = {

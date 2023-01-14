@@ -1,5 +1,9 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {
+import withMDXPlugin from '@next/mdx'
+
+const withMDX = withMDXPlugin()
+
+const nextConfig = withMDX({
   compiler: {
     styledComponents: true,
   },
@@ -10,14 +14,6 @@ const nextConfig = {
   poweredByHeader: false,
   reactStrictMode: true,
   trailingSlash: false,
-  webpack: config => {
-    config.resolve.fallback = { fs: false, module: false }
-    config.module.rules.push({
-      test: /\.md$/,
-      use: 'raw-loader',
-    })
-    return config
-  },
-}
+})
 
 export default nextConfig

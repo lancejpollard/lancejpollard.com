@@ -10,7 +10,7 @@ import {
   Theme,
 } from '@components/kit/styles'
 import styled, { CSSProperties, useTheme } from 'styled-components'
-import { useViewProps } from './useViewProps'
+import { useViewProps } from './useProps'
 
 export const StyledText = styled.p({})
 
