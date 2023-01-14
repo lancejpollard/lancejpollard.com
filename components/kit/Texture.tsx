@@ -1,8 +1,7 @@
 import {
   AbsolutePositionMixinType,
-  ABSOLUTE_POSITION_PROPERTIES,
   PositionType,
-} from '@configurations/styles'
+} from '@components/kit/styles'
 import React from 'react'
 import styled, { css } from 'styled-components'
 

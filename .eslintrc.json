@@ -37,7 +37,7 @@
       }
     ],
     "@typescript-eslint/await-thenable": "error",
-    "@typescript-eslint/consistent-type-definitions": [2, "type"],
+    "@typescript-eslint/consistent-type-definitions": 0,
     "@typescript-eslint/consistent-type-exports": "error",
     "@typescript-eslint/method-signature-style": "error",
     "@typescript-eslint/naming-convention": 0,

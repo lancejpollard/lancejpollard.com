@@ -1,0 +1,175 @@
+import _ from 'lodash'
+import React from 'react'
+import {
+  AbsolutePositionMixinType,
+  ALIGN,
+  AlignType,
+  BaseViewPropsType,
+  BorderRadiusMixinType,
+  DimensionMixinType,
+  DIRECTION,
+  DirectionType,
+  getBorderRadius,
+  getNumberOrString,
+  getNumberOrStringAspect,
+  getOverflow,
+  getOverflowAspect,
+  JUSTIFY,
+  JustifyType,
+  OverflowMixinType,
+  PositionType,
+  SpacingMixinType,
+  Theme,
+} from '@components/kit/styles'
+import styled, { useTheme } from 'styled-components'
+import { useViewProps } from './useViewProps'
+
+export type BoxPropsType = Omit<
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  React.ComponentProps<any>,
+  'as' | 'view'
+> & {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  as?: string | React.ComponentType<any>
+  view?: BoxViewPropsType | Array<BoxViewPropsType>
+}
+
+export type BoxViewPropsType = BaseViewPropsType &
+  DimensionMixinType &
+  SpacingMixinType &
+  OverflowMixinType &
+  BorderRadiusMixinType &
+  AbsolutePositionMixinType & {
+    align?: AlignType
+    animation?: string
+    direction?: DirectionType
+    fill?: string
+    flex?: number | string
+    gap?: string | number
+    grow?: boolean
+    hGap?: string | number
+    invisible?: boolean
+    justify?: JustifyType
+    position?: PositionType
+    shrink?: boolean
+    unselectable?: boolean
+    vGap?: string | number
+    wrap?: boolean
+  }
+
+export default function Box({ view, as, ...otherProps }: BoxPropsType) {
+  const theme = useTheme()
+  const [viewProps, ref] = useViewProps(view, theme, serializeViewProps)
+
+  return (
+    <StyledBox
+      as={as}
+      ref={ref}
+      {...viewProps}
+      {...otherProps}
+    />
+  )
+}
+
+function serializeViewProps(
+  theme: Theme,
+  stateProps: BoxViewPropsType,
+): React.CSSProperties {
+  return {
+    alignItems: stateProps.align ? ALIGN[stateProps.align] : undefined,
+    animation: stateProps.animation ? stateProps.animation : undefined,
+    backgroundColor: stateProps.fill ? stateProps.fill : undefined,
+    borderRadius: getBorderRadius(stateProps),
+    bottom: stateProps.bottom
+      ? getNumberOrString(stateProps.bottom)
+      : undefined,
+    columnGap: stateProps.hGap
+      ? getNumberOrString(stateProps.hGap)
+      : undefined,
+    display: 'flex',
+    flex: stateProps.flex ? stateProps.flex : undefined,
+    flexDirection: stateProps.direction
+      ? DIRECTION[stateProps.direction]
+      : undefined,
+    flexGrow: stateProps.grow ? 1 : undefined,
+    flexShrink: stateProps.shrink ? 1 : 0,
+    flexWrap: stateProps.wrap ? 'wrap' : undefined,
+    gap: stateProps.gap ? getNumberOrString(stateProps.gap) : undefined,
+    height: stateProps.height
+      ? getNumberOrString(stateProps.height)
+      : undefined,
+    justifyContent: stateProps.justify
+      ? JUSTIFY[stateProps.justify]
+      : undefined,
+    left: stateProps.left
+      ? getNumberOrString(stateProps.left)
+      : undefined,
+    margin: stateProps.margin
+      ? getNumberOrString(stateProps.margin)
+      : undefined,
+    marginBottom: getNumberOrStringAspect(stateProps, [
+      'marginBottom',
+      'marginVertical',
+    ]),
+    marginLeft: getNumberOrStringAspect(stateProps, [
+      'marginLeft',
+      'marginHorizontal',
+    ]),
+    marginRight: getNumberOrStringAspect(stateProps, [
+      'marginRight',
+      'marginHorizontal',
+    ]),
+    marginTop: getNumberOrStringAspect(stateProps, [
+      'marginTop',
+      'marginVertical',
+    ]),
+    maxHeight: stateProps.maxHeight
+      ? getNumberOrString(stateProps.maxHeight)
+      : undefined,
+    maxWidth: stateProps.maxWidth
+      ? getNumberOrString(stateProps.maxWidth)
+      : undefined,
+    minHeight: stateProps.minHeight
+      ? getNumberOrString(stateProps.minHeight)
+      : undefined,
+    minWidth: stateProps.minWidth
+      ? getNumberOrString(stateProps.minWidth)
+      : undefined,
+    overflow: getOverflow(stateProps),
+    overflowX: getOverflowAspect(stateProps, 'X'),
+    overflowY: getOverflowAspect(stateProps, 'Y'),
+    padding: stateProps.padding
+      ? getNumberOrString(stateProps.padding)
+      : undefined,
+    paddingBottom: getNumberOrStringAspect(stateProps, [
+      'paddingBottom',
+      'paddingVertical',
+    ]),
+    paddingLeft: getNumberOrStringAspect(stateProps, [
+      'paddingLeft',
+      'paddingHorizontal',
+    ]),
+    paddingRight: getNumberOrStringAspect(stateProps, [
+      'paddingRight',
+      'paddingHorizontal',
+    ]),
+    paddingTop: getNumberOrStringAspect(stateProps, [
+      'paddingTop',
+      'paddingVertical',
+    ]),
+    position: stateProps.position ? stateProps.position : undefined,
+    right: stateProps.right
+      ? getNumberOrString(stateProps.right)
+      : undefined,
+    rowGap: stateProps.vGap
+      ? getNumberOrString(stateProps.vGap)
+      : undefined,
+    top: stateProps.top ? getNumberOrString(stateProps.top) : undefined,
+    visibility: stateProps.invisible ? 'hidden' : undefined,
+    width: stateProps.width
+      ? getNumberOrString(stateProps.width)
+      : undefined,
+  }
+}
+
+export const StyledBox = styled.div({})
