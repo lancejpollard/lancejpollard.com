@@ -10,10 +10,10 @@ type LayoutPropsType = PagePropsType & {
 }
 
 const components = {
-  li: (props: React.ComponentProps<'li'>) => <li {...props} />,
-  ol: (props: React.ComponentProps<'ol'>) => <ol {...props} />,
-  p: (props: React.ComponentProps<'p'>) => <p {...props} />,
-  ul: (props: React.ComponentProps<'ul'>) => <ul {...props} />,
+  Item: (props: React.ComponentProps<'li'>) => <li {...props} />,
+  List: (props: React.ComponentProps<'ul'>) => <ul {...props} />,
+  OList: (props: React.ComponentProps<'ol'>) => <ol {...props} />,
+  Para: (props: React.ComponentProps<'p'>) => <p {...props} />,
 }
 
 export default function Layout({
@@ -31,9 +31,7 @@ export default function Layout({
         note={note}
         tags={tags}
       />
-      <ThemeProvider theme={theme}>
-        <MDXProvider components={components}>{children}</MDXProvider>
-      </ThemeProvider>
+      <ThemeProvider theme={theme}>{children}</ThemeProvider>
     </>
   )
 }

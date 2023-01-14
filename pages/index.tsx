@@ -15,20 +15,6 @@ import Text from '@components/kit/Text'
 import Layout from '@components/Layout'
 import Markdown from '@components/kit/Markdown'
 
-export async function getServerSideProps({
-  resolvedUrl,
-}: GetServerSidePropsType): Promise<
-  GetServerSideResultType<PagePropsType>
-> {
-  return {
-    props: {
-      tab: 'Lance Pollard',
-      tags: ['lancejpollard', 'software engineer'],
-      url: resolvedUrl,
-    },
-  }
-}
-
 const QuestionMark = Text({
   size: 120,
 })
@@ -233,4 +219,18 @@ export default function Page({ url, tab, note, tags }: PagePropsType) {
       </Content>
     </Layout>
   )
+}
+
+export async function getServerSideProps({
+  resolvedUrl,
+}: GetServerSidePropsType): Promise<
+  GetServerSideResultType<PagePropsType>
+> {
+  return {
+    props: {
+      tab: 'Lance Pollard',
+      tags: ['lancejpollard', 'software engineer'],
+      url: resolvedUrl,
+    },
+  }
 }

@@ -77,6 +77,7 @@ function serializeProps(
     ...getDimensionMixin(props),
     animation: props.animation ? props.animation : undefined,
     backgroundImage: props.fill ? `url('${props.fill}')` : undefined,
+    backgroundPosition: props.center ? 'center center' : undefined,
     backgroundRepeat: props.repeat ? 'repeat' : 'no-repeat',
     backgroundSize: getBackgroundSize(props),
     maskImage: props.mask ? props.mask : undefined,

@@ -1,17 +1,16 @@
 /** @type {import('next').NextConfig} */
 import createMDXPlugin from '@next/mdx'
-import rehypeRaw from 'rehype-raw'
-import remarkMdx from 'remark-mdx'
+// import rehypeRaw from 'rehype-raw'
 
 const mdxConfig = {
   extension: /\.mdx?$/,
   options: {
     providerImportSource: '@mdx-js/react',
-    rehypePlugins: [rehypeRaw],
+    rehypePlugins: [],
     // If you use remark-gfm, you'll need to use next.config.mjs
     // as the package is ESM only
     // https://github.com/remarkjs/remark-gfm#install
-    remarkPlugins: [remarkMdx],
+    remarkPlugins: [],
   },
 }
 
