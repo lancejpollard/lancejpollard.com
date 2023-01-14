@@ -1,9 +1,8 @@
-import ReactMarkdown from 'react-markdown'
-import rehypeRaw from 'rehype-raw'
+import React from 'react'
 import styled from 'styled-components'
 
 type PropsType = {
-  children: string
+  children: React.ReactNode
 }
 
 const Copy = styled.div({
@@ -25,11 +24,5 @@ const Copy = styled.div({
 })
 
 export default function Markdown({ children }: PropsType) {
-  return (
-    <Copy>
-      <ReactMarkdown rehypePlugins={[rehypeRaw]}>
-        {children}
-      </ReactMarkdown>
-    </Copy>
-  )
+  return <Copy>{children}</Copy>
 }

@@ -1,4 +1,4 @@
-<p>My ears twitch, nose wrinkles, and dawn is approaching. The birds are
+My ears twitch, nose wrinkles, and dawn is approaching. The birds are
 chirping, singing, a choir of melodies. I stretch, yawn, stand and greet
 the sun. No hint of rain or snow as I kick, cautiously thumping over the
 trodden ground of my home. It is time to feed, nibbling on the long
@@ -14,4 +14,4 @@ have closed their petalled eyes. I am satisfied, appreciating the
 accomplishment before me. It is time to sleep and nestle in for the
 night, listening to the rising sounds of the crickets and frogs, a
 symphony to lure me into dreams. A job well done, another day gone, and
-visions fall upon me of endless greens and wide azure skies.</p>
+visions fall upon me of endless greens and wide azure skies.

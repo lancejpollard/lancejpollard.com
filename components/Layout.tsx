@@ -10,7 +10,10 @@ type LayoutPropsType = PagePropsType & {
 }
 
 const components = {
-  // p: props => <p {...props} />,
+  li: (props: React.ComponentProps<'li'>) => <li {...props} />,
+  ol: (props: React.ComponentProps<'ol'>) => <ol {...props} />,
+  p: (props: React.ComponentProps<'p'>) => <p {...props} />,
+  ul: (props: React.ComponentProps<'ul'>) => <ul {...props} />,
 }
 
 export default function Layout({

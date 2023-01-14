@@ -13,6 +13,7 @@ import Description from '@contents/description.md'
 import Link from '@components/kit/Link'
 import Text from '@components/kit/Text'
 import Layout from '@components/Layout'
+import Markdown from '@components/kit/Markdown'
 
 export async function getServerSideProps({
   resolvedUrl,
@@ -139,7 +140,9 @@ export default function Page({ url, tab, note, tags }: PagePropsType) {
         </StarContainer>
         <PoemContainer>
           <PoemCenter>
-            <Poem />
+            <Markdown>
+              <Poem />
+            </Markdown>
           </PoemCenter>
         </PoemContainer>
         <MoonContainer>
@@ -191,7 +194,9 @@ export default function Page({ url, tab, note, tags }: PagePropsType) {
         </TubeContainer>
         <DescriptionContainer>
           <DescriptionCenter>
-            <Description />
+            <Markdown>
+              <Description />
+            </Markdown>
           </DescriptionCenter>
         </DescriptionContainer>
         <RockContainer>
