@@ -9,4 +9,5 @@ declare module 'styled-components' {
 
 declare module '@lancejpollard/kit' {
   interface Font extends AppFont {}
+  interface Theme extends AppTheme {}
 }

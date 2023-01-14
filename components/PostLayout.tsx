@@ -1,13 +1,8 @@
 import Layout from './Layout'
-import {
-  Box,
-  Content,
-  Text,
-  Texture,
-  PagePropsType,
-} from '@lancejpollard/kit'
+import { Box, Text, Texture, PagePropsType } from '@lancejpollard/kit'
 import React from 'react'
 import theme from '@configurations/theme'
+import Screen from './Screen'
 
 export type PostLayoutPropsType = PagePropsType & {
   children: React.ReactNode
@@ -73,7 +68,7 @@ export default function PostLayout({
       note={note}
       tags={tags}
     >
-      <Content>
+      <Screen>
         <Header>
           <HeaderTexture />
           <Title>{tab}</Title>
@@ -81,7 +76,7 @@ export default function PostLayout({
         <Body>
           <BodyCenter>{children}</BodyCenter>
         </Body>
-      </Content>
+      </Screen>
       {/* <section class="move w100v minh100v v">
         <div class="hc fs16 mtb64">
           <div class="maxw672 zvw672minw672 plr16">

@@ -3,7 +3,6 @@ import {
   GetServerSidePropsType,
   GetServerSideResultType,
   PagePropsType,
-  Content,
   Box,
   Texture,
   Link,
@@ -14,7 +13,7 @@ import Poem from '@contents/poem.md'
 import Description from '@contents/description.md'
 import Layout from '@components/Layout'
 import Copy from '@components/Copy'
-import useScrollIntoView from '@hooks/useScrollIntoView'
+import Screen from '@components/Screen'
 
 const QuestionMark = Text({
   fontSize: 120,
@@ -175,7 +174,7 @@ export default function Page({ url, tab, note, tags }: PagePropsType) {
       note={note}
       tags={tags}
     >
-      <Content>
+      <Screen>
         <FireContainer as="section">
           <FireTexture />
         </FireContainer>
@@ -219,7 +218,7 @@ export default function Page({ url, tab, note, tags }: PagePropsType) {
             <QuestionMark size={120}>?</QuestionMark>
           </Link.External>
         </LinkContainer>
-      </Content>
+      </Screen>
     </Layout>
   )
 }
