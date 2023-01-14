@@ -1,8 +1,6 @@
-import Head from '@components/kit/Head'
-import { PagePropsType } from '@components/kit/Page'
+import { Head, PagePropsType } from '@lancejpollard/kit'
 import theme from '@configurations/theme'
 import React from 'react'
-import { MDXProvider } from '@mdx-js/react'
 import { ThemeProvider } from 'styled-components'
 
 type LayoutPropsType = PagePropsType & {

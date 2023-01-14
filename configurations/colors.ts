@@ -1,4 +1,4 @@
-export default {
+const colors = {
   black: 'rgb(40, 40, 40)',
   blue: 'rgb(56, 201, 247)',
   green: 'hsl(165, 92%, 44%)',
@@ -11,3 +11,5 @@ export default {
   white3: 'rgb(222, 222, 222)',
   yellow: 'rgb(246, 223, 104)',
 }
+
+export default colors

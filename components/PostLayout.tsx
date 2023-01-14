@@ -1,7 +1,12 @@
 import Layout from './Layout'
-import { PagePropsType } from '@components/kit/Page'
+import {
+  Box,
+  Content,
+  Text,
+  Texture,
+  PagePropsType,
+} from '@lancejpollard/kit'
 import React from 'react'
-import { Box, Content, Text, Texture } from './kit'
 import theme from '@configurations/theme'
 import '../package'
 

@@ -1,9 +1,4 @@
-import React from 'react'
 import styled from 'styled-components'
-
-type PropsType = {
-  children: React.ReactNode
-}
 
 const Copy = styled.div({
   '*': {
@@ -23,6 +18,4 @@ const Copy = styled.div({
   },
 })
 
-export default function Markdown({ children }: PropsType) {
-  return <Copy>{children}</Copy>
-}
+export default Copy

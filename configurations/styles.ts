@@ -1,8 +1,9 @@
-import { Font } from '@components/kit/types'
+import { Font } from '@lancejpollard/kit'
 
-export const FONT: Record<string, string> = {
+export const FONT: Record<keyof Font, string> = {
   amharic: 'Amharic',
   arabic: 'Arabic',
+  arial: 'Arial',
   armenian: 'Armenian',
   bengali: 'Bengali',
   burmese: 'Burmese',

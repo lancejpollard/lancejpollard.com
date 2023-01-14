@@ -1,19 +1,19 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import {
   GetServerSidePropsType,
   GetServerSideResultType,
   PagePropsType,
-} from '@components/kit/Page'
-import Content from '@components/kit/Content'
-import Box from '@components/kit/Box'
+  Content,
+  Box,
+  Texture,
+  Link,
+  Text,
+} from '@lancejpollard/kit'
 import theme from '@configurations/theme'
-import Texture from '@components/kit/Texture'
 import Poem from '@contents/poem.md'
 import Description from '@contents/description.md'
-import Link from '@components/kit/Link'
-import Text from '@components/kit/Text'
 import Layout from '@components/Layout'
-import Markdown from '@components/kit/Markdown'
+import Copy from '@components/Copy'
 
 const QuestionMark = Text({
   fontSize: 120,
@@ -186,9 +186,9 @@ export default function Page({ url, tab, note, tags }: PagePropsType) {
         </StarContainer>
         <PoemContainer>
           <PoemCenter>
-            <Markdown>
+            <Copy>
               <Poem />
-            </Markdown>
+            </Copy>
           </PoemCenter>
         </PoemContainer>
         <MoonContainer>
@@ -208,9 +208,9 @@ export default function Page({ url, tab, note, tags }: PagePropsType) {
         </TubeContainer>
         <DescriptionContainer>
           <DescriptionCenter>
-            <Markdown>
+            <Copy>
               <Description />
-            </Markdown>
+            </Copy>
           </DescriptionCenter>
         </DescriptionContainer>
         <RockContainer>
