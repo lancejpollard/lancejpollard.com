@@ -7,13 +7,6 @@ type LayoutPropsType = PagePropsType & {
   children: React.ReactNode
 }
 
-const components = {
-  Item: (props: React.ComponentProps<'li'>) => <li {...props} />,
-  List: (props: React.ComponentProps<'ul'>) => <ul {...props} />,
-  OList: (props: React.ComponentProps<'ol'>) => <ol {...props} />,
-  Para: (props: React.ComponentProps<'p'>) => <p {...props} />,
-}
-
 export default function Layout({
   url,
   tab,

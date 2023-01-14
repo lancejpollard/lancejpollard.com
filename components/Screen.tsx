@@ -1,4 +1,3 @@
-import theme from '@configurations/theme'
 import { Box, Content } from '@lancejpollard/kit'
 import React from 'react'
 
