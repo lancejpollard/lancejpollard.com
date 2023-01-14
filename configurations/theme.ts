@@ -5,11 +5,13 @@ import images from '@configurations/images'
 import anchors from '@configurations/anchors'
 import gradients from '@configurations/gradients'
 
-export default {
+const theme = {
   anchors,
   animations,
   colors,
   fonts,
-  images,
   gradients,
+  images,
 }
+
+export default theme
