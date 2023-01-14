@@ -7,7 +7,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "link": "npm link styled-components next react react-dom"
   },
   "dependencies": {
     "@mdx-js/loader": "^2.2.1",

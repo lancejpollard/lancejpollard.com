@@ -8,7 +8,6 @@ import {
 } from '@lancejpollard/kit'
 import React from 'react'
 import theme from '@configurations/theme'
-import '../package'
 
 export type PostLayoutPropsType = PagePropsType & {
   children: React.ReactNode

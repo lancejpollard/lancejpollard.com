@@ -3,7 +3,7 @@ import animations from '@configurations/animations'
 import images from '@configurations/images'
 import anchors from '@configurations/anchors'
 import gradients from '@configurations/gradients'
-import { FONT } from '@configurations/styles'
+import { FONT } from '@configurations/fonts'
 
 const theme = {
   anchors,

@@ -1,3 +1,5 @@
+import { Font } from '@lancejpollard/kit'
+
 export type AppFont = {
   amharic: true
   arabic: true
@@ -20,6 +22,31 @@ export type AppFont = {
   text: true
   thai: true
   tibetan: true
+}
+
+export const FONT: Record<keyof Font, string> = {
+  amharic: 'Amharic',
+  arabic: 'Arabic',
+  arial: 'Arial',
+  armenian: 'Armenian',
+  bengali: 'Bengali',
+  burmese: 'Burmese',
+  chinese: 'Chinese',
+  georgian: 'Georgian',
+  hebrew: 'Hebrew',
+  hindi: 'Hindi',
+  inuktitut: 'Inuktitut',
+  japanese: 'Japanese',
+  kannada: 'Kannada',
+  khmer: 'Khmer',
+  korean: 'Korean',
+  latin: 'Latin',
+  malayalam: 'Malayalam',
+  persian: 'Persian',
+  tamil: 'Tamil',
+  text: 'text',
+  thai: 'Thai',
+  tibetan: 'Tibetan',
 }
 
 export type FontDataType = [string, string, string]

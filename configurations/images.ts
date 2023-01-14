@@ -1,4 +1,4 @@
-export default {
+const images = {
   face: '/images/face.png',
   fire: '/images/fire.png',
   hole: '/images/hole.png',
@@ -11,3 +11,5 @@ export default {
   tube: '/images/tube.png',
   wave: '/images/wave.png',
 }
+
+export default images
