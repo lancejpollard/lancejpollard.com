@@ -1,25 +1,30 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import _ from 'lodash'
 import React from 'react'
-import styled, { CSSProperties, useTheme } from 'styled-components'
-import { Theme } from './styles'
+import styled, { CSSObject, useTheme } from 'styled-components'
+import { BaseInputPropsType } from './styles'
 import useProps from './useProps'
 
-export type BasicInputPropsType<T> = T | Array<T>
-
-export type FactoryStyledPropsType = {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  styledProps: any
+export type FactoryPropsType = {
+  styledProps: CSSObject
 }
 
-export type InputPropsFunctionType<I, T> = (props: I) => T
+export type InputPropsType<P> = P extends (...args: any) => any
+  ? ReturnType<P>
+  : P
 
-export type InputPropsType<T, I> = T extends Function
-  ? InputPropsFunctionType<I, T>
-  : T
-
-export default function FactoryFactory<T>(
+export default function FactoryFactory<
+  V extends object,
+  // The Theme from the current context
+  T extends object,
+  // The properties from say the `Box`.
+  P extends BaseInputPropsType<V> = BaseInputPropsType<V>,
+  // The other props added by the template
+  O extends React.ComponentPropsWithoutRef<any> = React.ComponentPropsWithoutRef<any>,
+>(
   as: string,
   propNames: Array<string>,
-  serializer: (theme: Theme, props: T) => CSSProperties,
+  serializer: (theme: T, props: V) => CSSObject,
 ) {
   const propNamesMap = propNames.reduce<Record<string, boolean>>(
     (m, x) => {
@@ -29,43 +34,32 @@ export default function FactoryFactory<T>(
     {},
   )
 
-  return function Factory<I extends object>(
-    inputProps: InputPropsType<T, I>,
-  ) {
-    const isPropsFunction = typeof inputProps === 'function'
-    const Styled = styled.div<FactoryStyledPropsType>(
+  return function Factory(inputProps: InputPropsType<O & P>) {
+    const Styled = styled.div<FactoryPropsType>(
       props => props.styledProps,
     )
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    function Component(props: I, passedRef: React.ForwardedRef<any>) {
-      const actualProps = isPropsFunction
-        ? (inputProps as InputPropsFunctionType<I, T>)(props)
-        : props
+    function Component(props: O, passedRef: React.ForwardedRef<any>) {
+      const theme = useTheme() as T
 
-      const elementProps: Record<string, unknown> = {}
-      Object.keys(props).forEach(key => {
-        if (!(key in propNamesMap)) {
-          elementProps[key] = props[key]
-        }
-      })
-
-      const theme = useTheme()
-
-      const [styledProps, ref] = useProps(
-        actualProps,
+      const [styledProps, elementProps, ref] = useProps<V, P, O, T>(
+        propNamesMap,
+        props,
+        inputProps,
         theme,
         passedRef,
         serializer,
       )
 
-      return (
+      const node = (
         <Styled
           {...elementProps}
           ref={ref}
           styledProps={styledProps}
         />
       )
+
+      return node
     }
 
     Component.toString = Styled.toString

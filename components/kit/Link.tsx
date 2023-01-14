@@ -1,29 +1,12 @@
 import React from 'react'
 import NextLink, { LinkProps } from 'next/link'
-import Box, { BoxPropsType } from './Box'
+import Box from './Box'
 
-type ExternalLinkPropsType = Omit<BoxPropsType, 'unselectable'> & {
-  children: React.ReactNode
-  href: string
-}
-
-function ExternalLink({
-  href,
-  children,
-  ...attrs
-}: ExternalLinkPropsType) {
-  return (
-    <Box
-      {...attrs}
-      as="a"
-      target="_blank"
-      rel="noreferrer"
-      href={href}
-    >
-      {children}
-    </Box>
-  )
-}
+const ExternalLink = Box({
+  as: 'a',
+  rel: 'noreferrer',
+  target: '_blank',
+})
 
 type PropsType = LinkProps & {
   children: React.ReactNode

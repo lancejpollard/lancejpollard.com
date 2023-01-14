@@ -8,8 +8,8 @@ import Content from '@components/kit/Content'
 import Box from '@components/kit/Box'
 import theme from '@configurations/theme'
 import Texture from '@components/kit/Texture'
-import POEM from '@contents/poem.md'
-import DESCRIPTION from '@contents/description.md'
+// import POEM from '@contents/poem.md'
+// import DESCRIPTION from '@contents/description.md'
 import Markdown from '@components/kit/Markdown'
 import Link from '@components/kit/Link'
 import Text from '@components/kit/Text'
@@ -28,70 +28,84 @@ export async function getServerSideProps({
   }
 }
 
-const ui = {
-  descriptionCenter: {
-    maxWidth: 672,
-    paddingVertical: 128,
-  },
-  descriptionContainer: {
-    align: 'center' as const,
-    direction: 'vertical' as const,
-    paddingHorizontal: 16,
-  },
-  faceContainer: {
-    height: '100vh',
-    id: 'rabbit',
-    paddingBottom: 48,
-    paddingTop: 24,
-    width: '100vw',
-  },
-  fireContainer: {
-    crop: true,
-    padding: 64,
-    width: '100vw',
-  },
-  holeContainer: {
-    marginTop: 128,
-    minHeight: '100vh',
-  },
-  landContainer: {
-    margin: '128px 0px',
-  },
-  linkContainer: {
-    align: 'center' as const,
-    height: '100vh',
-    justify: 'center' as const,
-    width: '100%',
-  },
-  moonContainer: {
-    align: 'center' as const,
-    height: '100vh',
-    justify: 'center' as const,
-    width: '100vw',
-  },
-  poemCenter: {
-    maxWidth: 672,
-    paddingVertical: 128,
-  },
-  poemContainer: {
-    align: 'center' as const,
-    direction: 'vertical' as const,
-    paddingHorizontal: 16,
-  },
-  rockContainer: {
-    height: '800vh',
-    width: '100%',
-  },
-  starContainer: {
-    height: '200vh',
-    margin: '128px 0px',
-    width: '100%',
-  },
-  tubeContainer: {
-    height: '800vh',
-    width: '100%',
-  },
-}
+const QuestionMark = Text({
+  size: 120,
+})
+
+const DescriptionCenter = Box({
+  maxWidth: 672,
+  paddingVertical: 128,
+})
+
+const DescriptionContainer = Box({
+  align: 'center' as const,
+  direction: 'vertical' as const,
+  paddingHorizontal: 16,
+})
+
+const FaceContainer = Box({
+  height: '100vh',
+  id: 'rabbit',
+  paddingBottom: 48,
+  paddingTop: 24,
+  width: '100vw',
+})
+
+const FireContainer = Box({
+  crop: true,
+  padding: 64,
+  width: '100vw',
+})
+
+const HoleContainer = Box({
+  marginTop: 128,
+  minHeight: '100vh',
+})
+
+const LandContainer = Box({
+  margin: '128px 0px',
+})
+
+const LinkContainer = Box({
+  align: 'center' as const,
+  height: '100vh',
+  justify: 'center' as const,
+  width: '100%',
+})
+
+const MoonContainer = Box({
+  align: 'center' as const,
+  height: '100vh',
+  justify: 'center' as const,
+  width: '100vw',
+})
+
+const PoemCenter = Box({
+  maxWidth: 672,
+  paddingVertical: 128,
+})
+
+const PoemContainer = Box({
+  align: 'center' as const,
+  direction: 'vertical' as const,
+  paddingHorizontal: 16,
+})
+
+const RockContainer = Box({
+  height: '800vh',
+  width: '100%',
+})
+
+const StarContainer = Box({
+  height: '200vh',
+  margin: '128px 0px',
+  width: '100%',
+})
+
+const TubeContainer = Box({
+  height: '800vh',
+  width: '100%',
+})
 
 export default function Page({ url, tab, note, tags }: PagePropsType) {
   return (
@@ -101,10 +115,7 @@ export default function Page({ url, tab, note, tags }: PagePropsType) {
       note={note}
       tags={tags}
     >
-      <Box
-        as="section"
-        view={ui.fireContainer}
-      >
+      <FireContainer as="section">
         <Texture
           fitContent
           width="100%"
@@ -115,8 +126,8 @@ export default function Page({ url, tab, note, tags }: PagePropsType) {
           contain
           round
         />
-      </Box>
-      <Box view={ui.starContainer}>
+      </FireContainer>
+      <StarContainer>
         <Texture
           stretch
           fill={theme.images.star}
@@ -124,21 +135,19 @@ export default function Page({ url, tab, note, tags }: PagePropsType) {
           size={384}
           mask={theme.gradients.band}
         />
-      </Box>
-      <Box view={ui.poemContainer}>
-        <Box view={ui.poemCenter}>
-          <Markdown>{POEM}</Markdown>
-        </Box>
-      </Box>
-      <Box view={ui.moonContainer}>
+      </StarContainer>
+      <PoemContainer>
+        <PoemCenter>{/* <Markdown>{POEM}</Markdown> */}</PoemCenter>
+      </PoemContainer>
+      <MoonContainer>
         <Texture
           as="img"
           draggable="false"
           width={300}
           src="/images/moon.png"
         />
-      </Box>
-      <Box view={ui.landContainer}>
+      </MoonContainer>
+      <LandContainer>
         <Texture
           as="img"
           draggable="false"
@@ -146,11 +155,8 @@ export default function Page({ url, tab, note, tags }: PagePropsType) {
           src="/images/land.png"
           mask={theme.gradients.band2}
         />
-      </Box>
-      <Box
-        view={ui.faceContainer}
-        id="rabbit"
-      >
+      </LandContainer>
+      <FaceContainer id="rabbit">
         <Texture
           width="100%"
           height="100%"
@@ -159,8 +165,8 @@ export default function Page({ url, tab, note, tags }: PagePropsType) {
           contain
           animation={theme.animations.jump.slow}
         />
-      </Box>
-      <Box view={ui.holeContainer}>
+      </FaceContainer>
+      <HoleContainer>
         <Texture
           as="img"
           width="100%"
@@ -169,8 +175,8 @@ export default function Page({ url, tab, note, tags }: PagePropsType) {
           draggable="false"
           mask={theme.gradients.band}
         />
-      </Box>
-      <Box view={ui.tubeContainer}>
+      </HoleContainer>
+      <TubeContainer>
         <Texture
           stretch
           opacity={0.7}
@@ -179,13 +185,13 @@ export default function Page({ url, tab, note, tags }: PagePropsType) {
           repeat
           mask={theme.gradients.band}
         />
-      </Box>
-      <Box view={ui.descriptionContainer}>
-        <Box view={ui.descriptionCenter}>
-          <Markdown>{DESCRIPTION}</Markdown>
-        </Box>
-      </Box>
-      <Box view={ui.rockContainer}>
+      </TubeContainer>
+      <DescriptionContainer>
+        <DescriptionCenter>
+          {/* <Markdown>{DESCRIPTION}</Markdown> */}
+        </DescriptionCenter>
+      </DescriptionContainer>
+      <RockContainer>
         <Texture
           stretch
           opacity={0.7}
@@ -194,12 +200,12 @@ export default function Page({ url, tab, note, tags }: PagePropsType) {
           repeat
           mask={theme.gradients.band}
         />
-      </Box>
-      <Box view={ui.linkContainer}>
+      </RockContainer>
+      <LinkContainer>
         <Link.External href="https://github.com/lancejpollard">
-          <Text size={120}>?</Text>
+          <QuestionMark size={120}>?</QuestionMark>
         </Link.External>
-      </Box>
+      </LinkContainer>
     </Content>
   )
 }

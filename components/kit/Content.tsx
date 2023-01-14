@@ -7,14 +7,25 @@ type PropsType = PagePropsType & {
   children: React.ReactNode
 }
 
-const ui = {
-  scroller: {
-    minHeight: '100vh',
-    position: 'absolute' as const,
-    scrollY: true,
-    width: '100vw',
-  },
-}
+const Wrapper = Box({
+  minHeight: '100vh',
+  position: 'absolute' as const,
+  width: '100vw',
+})
+
+const Container = Box({
+  direction: 'vertical' as const,
+  flex: 1,
+  height: '100vh',
+  width: '100%',
+})
+
+const Scroller = Box({
+  direction: 'vertical' as const,
+  flex: 1,
+  scrollY: true,
+  width: '100%',
+})
 
 export default function Content({
   children,
@@ -27,11 +38,15 @@ export default function Content({
     <>
       <Head
         url={url}
-        title={`${tab}`}
+        title={tab}
         note={note}
         tags={tags}
       />
-      <Box view={ui.scroller}>{children}</Box>
+      <Wrapper>
+        <Container>
+          <Scroller>{children}</Scroller>
+        </Container>
+      </Wrapper>
     </>
   )
 }

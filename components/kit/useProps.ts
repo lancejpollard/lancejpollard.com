@@ -1,65 +1,106 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import _ from 'lodash'
-import React, { useEffect, useRef, useState } from 'react'
-import { CSSProperties } from 'styled-components'
-import { BaseInputPropsType, QueryType, Theme } from './styles'
+import React, {
+  ComponentType,
+  useEffect,
+  useRef,
+  useState,
+} from 'react'
+import { CSSObject } from 'styled-components'
+import {
+  BaseInputPropsType,
+  BaseMatchInputPropsType,
+  QueryType,
+} from './styles'
+
+type BasicRecord = Record<string, unknown>
 
 export type CompiledViewPropsType = {
   match?: QueryType
-  props: CSSProperties
+  props: CSSObject
 }
 
-export type DimensionsType = {
-  height: number
-  width: number
-}
-
-export default function useProps<T extends object>(
-  input: BaseInputPropsType<T> | undefined,
-  theme: Theme,
+export default function useProps<
+  V extends object,
+  P extends BaseInputPropsType<V>,
+  O extends object,
+  T extends object,
+>(
+  propNamesMap: Record<string, boolean>,
+  componentProps: P,
+  initializationProps: O,
+  theme: T,
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   passedRef: React.ForwardedRef<any>,
-  converter: (
-    theme: Theme,
-    input: BaseInputPropsType<T>,
-  ) => CSSProperties,
-): [CSSProperties, React.RefObject<HTMLElement>] {
-  const [props, setProps] = useState<CSSProperties>({})
+  converter: (theme: T, input: V) => CSSObject,
+): [
+  CSSObject,
+  React.ComponentPropsWithoutRef<any>,
+  React.RefObject<HTMLDivElement>,
+] {
+  const [props, setProps] = useState<CSSObject>({})
+  const [elementProps, setElementProps] = useState<
+    React.ComponentPropsWithoutRef<any>
+  >({})
   const [propsArray, setPropsArray] =
     useState<Array<CompiledViewPropsType>>()
-  const [parentDimensions, setParentDimensions] =
-    useState<DimensionsType>()
-  const ref = useRef<HTMLElement>(null)
-  const localRef = (passedRef || ref) as React.RefObject<HTMLElement>
+  const [parentWidth, setParentWidth] = useState<number>()
+  const [parentHeight, setParentHeight] = useState<number>()
+  const ref = useRef<HTMLDivElement>(null)
+  const localRef = (passedRef || ref) as React.RefObject<HTMLDivElement>
 
   useEffect(() => {
     let watchesParent = false
 
-    let defaultChildProps: CSSProperties = {}
+    const props = {}
+
+    if (typeof initializationProps === 'function') {
+      _.merge(
+        props,
+        (initializationProps as (...args: any) => O & P)(
+          componentProps,
+        ),
+      )
+    } else {
+      _.merge(props, componentProps)
+      _.merge(props, initializationProps)
+    }
+
+    const elProps: React.ComponentPropsWithoutRef<any> = {}
+    Object.keys(props).forEach(key => {
+      if (!(key in propNamesMap)) {
+        ;(elProps as BasicRecord)[key] = (props as BasicRecord)[key]
+      }
+    })
+
+    setElementProps(elProps)
+
+    const input = props as O & P
+
+    let defaultChildProps: CSSObject = {}
     const childPropsArray: Array<CompiledViewPropsType> = [
       { props: defaultChildProps },
     ]
 
-    if (input) {
-      const childProps = converter(theme, input)
-      _.merge(defaultChildProps, childProps)
+    const childProps = converter(theme, input)
+    _.merge(defaultChildProps, childProps)
 
-      if (input.queries) {
-        input.queries.forEach(query => {
-          const childProps = converter(theme, query)
-          if (query.match) {
-            if (query.match.element === 'window') {
-              const mediaParts = []
-              _.merge(defaultChildProps)
-            } else {
-              watchesParent = true
-              childPropsArray.push({
-                match: query.match,
-                props: childProps,
-              })
-            }
+    if (input.queries) {
+      input.queries.forEach(query => {
+        const childProps = converter(theme, query)
+        if (query.match) {
+          if (query.match.element === 'window') {
+            const mediaParts = []
+            _.merge(defaultChildProps)
+          } else {
+            watchesParent = true
+            childPropsArray.push({
+              match: query.match,
+              props: childProps,
+            })
           }
-        })
-      }
+        }
+      })
     }
 
     childPropsArray.slice(1).forEach(childProps => {
@@ -75,10 +116,8 @@ export default function useProps<T extends object>(
           const sizeInfo = element.borderBoxSize?.[0]
           const width = sizeInfo?.inlineSize ?? 0
           const height = sizeInfo?.blockSize ?? 0
-          setParentDimensions({
-            height,
-            width,
-          })
+          setParentWidth(width)
+          setParentHeight(height)
         }
       })
 
@@ -90,12 +129,11 @@ export default function useProps<T extends object>(
       const height = rect?.height ?? 0
 
       if (width && height) {
-        setParentDimensions({
-          height,
-          width,
-        })
+        setParentWidth(width)
+        setParentHeight(height)
       } else {
-        setParentDimensions(undefined)
+        setParentWidth(undefined)
+        setParentHeight(undefined)
       }
     }
 
@@ -104,15 +142,22 @@ export default function useProps<T extends object>(
     return () => {
       observer?.disconnect()
     }
-  }, [localRef, converter, input, theme])
+  }, [
+    localRef,
+    converter,
+    initializationProps,
+    propNamesMap,
+    componentProps,
+    theme,
+  ])
 
   useEffect(() => {
     const defaultProps = propsArray?.[0]
 
-    if (parentDimensions && propsArray) {
+    if (parentWidth && propsArray) {
       const matchingProps = selectPropsMatchingDimensions(
         propsArray,
-        parentDimensions,
+        parentWidth,
       )
 
       if (defaultProps) {
@@ -123,31 +168,28 @@ export default function useProps<T extends object>(
         setProps(defaultProps.props)
       }
     }
-  }, [propsArray, parentDimensions, setProps])
+  }, [propsArray, parentWidth, setProps])
 
-  return [props, localRef]
+  return [props, elementProps, localRef]
 }
 
 function selectPropsMatchingDimensions(
   array: Array<CompiledViewPropsType>,
-  dimensions: DimensionsType,
-): CSSProperties | undefined {
+  width: number,
+): CSSObject | undefined {
   for (const info of array) {
     const { match, props } = info
     if (match) {
       if (match.minWidth && match.maxWidth) {
-        if (
-          dimensions.width >= match.minWidth &&
-          match.maxWidth < dimensions.width
-        ) {
+        if (width >= match.minWidth && match.maxWidth < width) {
           return props
         }
       } else if (match.minWidth) {
-        if (dimensions.width >= match.minWidth) {
+        if (width >= match.minWidth) {
           return props
         }
       } else if (match.maxWidth) {
-        if (match.maxWidth < dimensions.width) {
+        if (match.maxWidth < width) {
           return props
         }
       }

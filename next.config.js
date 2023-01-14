@@ -12,8 +12,22 @@ const nextConfig = withMDX({
   },
   pageExtensions: ['mdx', 'md', 'tsx', 'ts'],
   poweredByHeader: false,
-  reactStrictMode: true,
+  // reactStrictMode: true,
   trailingSlash: false,
+
+  webpack: (config, options) => {
+    config.module.rules.push({
+      test: /\.mdx/,
+      use: [
+        options.defaultLoaders.babel,
+        {
+          loader: '@mdx-js/loader',
+        },
+      ],
+    })
+
+    return config
+  },
 })
 
 export default nextConfig

@@ -20,7 +20,7 @@ import {
   SpacingMixinType,
   Theme,
 } from '@components/kit/styles'
-import { CSSProperties } from 'styled-components'
+import { CSSObject } from 'styled-components'
 import Factory from './Factory'
 
 export type BoxPropsType = BaseInputPropsType<BoxViewPropsType>
@@ -97,7 +97,7 @@ export const PROP_LIST: Array<string> = [
   'width',
 ]
 
-export default Factory<BoxViewPropsType>(
+export default Factory<BoxViewPropsType, Theme>(
   'div',
   PROP_LIST,
   serializeViewProps,
@@ -106,7 +106,7 @@ export default Factory<BoxViewPropsType>(
 function serializeViewProps(
   theme: Theme,
   stateProps: BoxViewPropsType,
-): CSSProperties {
+): CSSObject {
   return {
     alignItems: stateProps.align ? ALIGN[stateProps.align] : undefined,
     animation: stateProps.animation ? stateProps.animation : undefined,

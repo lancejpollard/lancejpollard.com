@@ -10,7 +10,7 @@ import {
   Theme,
 } from '@components/kit/styles'
 import Factory from './Factory'
-import { CSSProperties } from 'styled-components'
+import { CSSObject } from 'styled-components'
 
 export const PROP_LIST = [
   'font',
@@ -46,7 +46,7 @@ export default Factory('p', PROP_LIST, serializeProps)
 function serializeProps(
   theme: Theme,
   props: TextViewPropsType,
-): CSSProperties {
+): CSSObject {
   return {
     animation: props.animation ? props.animation : undefined,
     color: props.fill ? props.fill : undefined,

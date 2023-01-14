@@ -42,6 +42,19 @@ const STRETCH_MIXIN = css`
   left: 0;
 `
 
+export const ABSOLUTE_POSITION_PROPERTIES = css<AbsolutePositionMixinType>`
+  ${({ top }) =>
+    top && `top: ${typeof top === 'number' ? `${top}px` : top};`}
+  ${({ right }) =>
+    right &&
+    `right: ${typeof right === 'number' ? `${right}px` : right};`}
+  ${({ bottom }) =>
+    bottom &&
+    `bottom: ${typeof bottom === 'number' ? `${bottom}px` : bottom};`}
+  ${({ left }) =>
+    left && `left: ${typeof left === 'number' ? `${left}px` : left};`}
+`
+
 const UNFORWARDED_PROPS = [
   'fill',
   'height',

@@ -9,7 +9,7 @@ export type AbsolutePositionMixinType = {
 
 export type AlignType = 'center' | 'end' | 'start'
 
-export type BaseInputPropsType<T> = {
+export type BaseInputPropsType<T extends object> = T & {
   queries?: Array<BaseMatchInputPropsType<T>>
   selectors?: Record<string, T>
 }
@@ -141,13 +141,13 @@ export function getNumberOrString(value: number | string): string {
 }
 
 export function getNumberOrStringAspect(
-  props: BoxStatePropsType,
+  props: SpacingMixinType,
   aspects: Array<string>,
 ): string | undefined {
   for (const aspect of aspects) {
     if (aspect in props) {
       return getNumberOrString(
-        props[aspect as keyof BoxStatePropsType] as string | number,
+        props[aspect as keyof SpacingMixinType] as string | number,
       )
     }
   }
