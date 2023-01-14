@@ -13,6 +13,7 @@ import Poem from '@contents/poem.md'
 import Description from '@contents/description.md'
 import Layout from '@components/Layout'
 import Copy from '@components/Copy'
+import useScrollIntoView from '@hooks/useScrollIntoView'
 import Screen from '@components/Screen'
 
 const QuestionMark = Text({
@@ -165,7 +166,7 @@ const RockTexture = Texture(props => ({
 }))
 
 export default function Page({ url, tab, note, tags }: PagePropsType) {
-  // const rabbitRef = useScrollIntoView()
+  const rabbitRef = useScrollIntoView()
 
   return (
     <Layout
@@ -194,7 +195,10 @@ export default function Page({ url, tab, note, tags }: PagePropsType) {
         <LandContainer>
           <LandTexture />
         </LandContainer>
-        <FaceContainer id="rabbit">
+        <FaceContainer
+          id="rabbit"
+          ref={rabbitRef}
+        >
           <FaceTexture />
         </FaceContainer>
         <HoleContainer>
