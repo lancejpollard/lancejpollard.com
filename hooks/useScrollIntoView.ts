@@ -5,10 +5,10 @@ export default function useScrollIntoView(
   dependencies: React.DependencyList = [],
 ) {
   const localRef = useCallback((node: HTMLElement) => {
-    const timeout = setTimeout(() => node?.scrollIntoView(), 16)
+    const timeout = window.setTimeout(() => node?.scrollIntoView(), 16)
 
     return () => {
-      clearTimeout(timeout)
+      window.clearTimeout(timeout)
     }
   }, dependencies)
 
