@@ -1,9 +1,7 @@
 import React from 'react'
-import { PagePropsType } from '@components/kit/Page'
-import Head from '@components/kit/Head'
 import Box from '@components/kit/Box'
 
-type PropsType = PagePropsType & {
+type PropsType = {
   children: React.ReactNode
 }
 
@@ -27,26 +25,12 @@ const Scroller = Box({
   width: '100%',
 })
 
-export default function Content({
-  children,
-  url,
-  tab,
-  note,
-  tags,
-}: PropsType) {
+export default function Content({ children }: PropsType) {
   return (
-    <>
-      <Head
-        url={url}
-        title={tab}
-        note={note}
-        tags={tags}
-      />
-      <Wrapper>
-        <Container>
-          <Scroller>{children}</Scroller>
-        </Container>
-      </Wrapper>
-    </>
+    <Wrapper>
+      <Container>
+        <Scroller>{children}</Scroller>
+      </Container>
+    </Wrapper>
   )
 }

@@ -1,7 +1,20 @@
 /** @type {import('next').NextConfig} */
-import withMDXPlugin from '@next/mdx'
+import createMDXPlugin from '@next/mdx'
 
-const withMDX = withMDXPlugin()
+const mdxConfig = {
+  extension: /\.mdx?$/,
+  options: {
+    rehypePlugins: [],
+    // If you use remark-gfm, you'll need to use next.config.mjs
+    // as the package is ESM only
+    // https://github.com/remarkjs/remark-gfm#install
+    remarkPlugins: [],
+    // If you use `MDXProvider`, uncomment the following line.
+    // providerImportSource: "@mdx-js/react",
+  },
+}
+
+const withMDX = createMDXPlugin(mdxConfig)
 
 const nextConfig = withMDX({
   compiler: {
@@ -14,20 +27,6 @@ const nextConfig = withMDX({
   poweredByHeader: false,
   // reactStrictMode: true,
   trailingSlash: false,
-
-  webpack: (config, options) => {
-    config.module.rules.push({
-      test: /\.mdx/,
-      use: [
-        options.defaultLoaders.babel,
-        {
-          loader: '@mdx-js/loader',
-        },
-      ],
-    })
-
-    return config
-  },
 })
 
 export default nextConfig

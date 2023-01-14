@@ -51,12 +51,15 @@ export default function FactoryFactory<
         serializer,
       )
 
-      const node = (
-        <Styled
-          {...elementProps}
-          ref={ref}
-          styledProps={styledProps}
-        />
+      const { children, ...elementPropsWithoutChildren } = elementProps
+      const childrenAsReactNode = (
+        Array.isArray(children) ? children : [children]
+      ) as Array<React.ReactNode>
+
+      const node = React.createElement(
+        Styled,
+        { ...elementPropsWithoutChildren, ref, styledProps },
+        ...childrenAsReactNode,
       )
 
       return node
