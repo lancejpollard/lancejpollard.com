@@ -60,7 +60,7 @@ export default function CA2DComponent({
 
       renderer.draw(ca, colors)
 
-      debugger
+      // debugger
 
       while (i < steps) {
         await wait(100)
@@ -73,7 +73,7 @@ export default function CA2DComponent({
     return () => {
       i = steps
     }
-  }, [ref, h, w, max, move, steps, canvas])
+  }, [h, w, max, move, steps, canvas])
 
   return <Canvas ref={ref} />
 }

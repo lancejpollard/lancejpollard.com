@@ -29,6 +29,20 @@ export const meta = {
     {
       make: 0,
       test: [
+        eq(0),
+        eq(0),
+        eq(1),
+        eq(0),
+        any,
+        eq(0),
+        eq(0),
+        eq(0),
+        eq(0),
+      ],
+    },
+    {
+      make: 0,
+      test: [
         eq(1),
         eq(0),
         eq(0),
@@ -142,8 +156,6 @@ export const meta = {
   w={60}
   steps={1000}
 />
-
-Some content
 
 export default ({ children }) => (
   <PostLayout {...meta}>{children}</PostLayout>
