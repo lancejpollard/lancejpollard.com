@@ -49,6 +49,7 @@ const Body = Box({
 })
 
 const BodyCenter = Box({
+  direction: 'vertical',
   maxWidth: 672,
   paddingHorizontal: 16,
   width: '100%',

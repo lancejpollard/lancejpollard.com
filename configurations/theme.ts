@@ -3,6 +3,7 @@ import animations from '@configurations/animations'
 import images from '@configurations/images'
 import anchors from '@configurations/anchors'
 import gradients from '@configurations/gradients'
+import shadows from '@configurations/shadows'
 import { FONT } from '@configurations/fonts'
 
 const theme = {
@@ -12,6 +13,7 @@ const theme = {
   fonts: FONT,
   gradients,
   images,
+  shadows,
 }
 
 export type AppTheme = typeof theme

@@ -1,10 +1,147 @@
 import PostLayout from '@components/PostLayout'
+import CA2D from '@components/CA2D'
+import { any, eq } from '@lancejpollard/ca'
 
 export const meta = {
   url: '/cellular-automata',
   tab: 'Cellular Automata Notes',
   keywords: ['cellular automata'],
 }
+
+<CA2D
+  h={60}
+  max={1}
+  move={[
+    {
+      make: 1,
+      test: [
+        eq(1),
+        eq(0),
+        eq(1),
+        eq(1),
+        any,
+        eq(1),
+        eq(1),
+        eq(0),
+        eq(1),
+      ],
+    },
+    {
+      make: 0,
+      test: [
+        eq(1),
+        eq(0),
+        eq(0),
+        eq(0),
+        eq(1),
+        eq(0),
+        eq(0),
+        eq(0),
+        eq(1),
+      ],
+    },
+    {
+      make: 1,
+      test: [
+        eq(1),
+        eq(0),
+        eq(1),
+        eq(0),
+        any,
+        eq(1),
+        eq(0),
+        eq(0),
+        eq(0),
+      ],
+    },
+    {
+      make: 1,
+      test: [
+        eq(1),
+        eq(0),
+        eq(0),
+        eq(0),
+        any,
+        eq(0),
+        eq(0),
+        eq(0),
+        eq(0),
+      ],
+    },
+    {
+      make: 0,
+      test: [
+        eq(1),
+        eq(0),
+        eq(0),
+        eq(0),
+        eq(1),
+        eq(0),
+        eq(0),
+        eq(0),
+        eq(1),
+      ],
+    },
+    {
+      make: 1,
+      test: [
+        eq(1),
+        eq(0),
+        eq(0),
+        eq(0),
+        any,
+        eq(0),
+        eq(0),
+        eq(0),
+        eq(1),
+      ],
+    },
+    {
+      make: 1,
+      test: [
+        eq(1),
+        eq(0),
+        eq(1),
+        eq(1),
+        any,
+        eq(1),
+        eq(0),
+        eq(0),
+        eq(0),
+      ],
+    },
+    {
+      make: 1,
+      test: [
+        eq(1),
+        eq(0),
+        eq(0),
+        eq(0),
+        eq(1),
+        eq(0),
+        eq(0),
+        eq(0),
+        eq(1),
+      ],
+    },
+    {
+      make: 0,
+      test: [
+        eq(1),
+        eq(1),
+        eq(0),
+        eq(0),
+        any,
+        eq(1),
+        eq(0),
+        eq(0),
+        eq(1),
+      ],
+    },
+  ]}
+  w={60}
+  steps={1000}
+/>
 
 Some content
 
