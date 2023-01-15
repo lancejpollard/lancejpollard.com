@@ -13,7 +13,7 @@ type CA2DPropsType = {
 
 const Canvas = Box({
   as: 'canvas',
-  shadow: theme.shadows.one,
+  shadow: theme.shadows.big,
   width: '100%',
 })
 
