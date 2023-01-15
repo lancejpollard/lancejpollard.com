@@ -15,7 +15,6 @@ import Layout from '@components/Layout'
 import Copy from '@components/Copy'
 import useScrollIntoView from '@hooks/useScrollIntoView'
 import Screen from '@components/Screen'
-import useAssetLoader from '@hooks/useAssetLoader'
 
 const QuestionMark = Text({
   fontSize: 120,
@@ -173,26 +172,8 @@ const RockTexture = Texture(props => ({
   stretch: true,
 }))
 
-const IMAGES = Object.keys(theme.images).map(key => theme.images[key])
-
 export default function Page({ url, tab, note, tags }: PagePropsType) {
   const rabbitRef = useScrollIntoView()
-  const isLoaded = useAssetLoader({ images: IMAGES })
-
-  if (!isLoaded) {
-    return (
-      <Layout
-        url={url}
-        tab={tab}
-        note={note}
-        tags={tags}
-      >
-        <Loaderontainer>
-          <div className="loader" />
-        </Loaderontainer>
-      </Layout>
-    )
-  }
 
   return (
     <Layout

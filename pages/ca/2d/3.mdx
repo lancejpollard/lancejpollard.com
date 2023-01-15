@@ -3,15 +3,15 @@ import CA2D from '@components/CA2D'
 import { any, eq } from '@lancejpollard/ca'
 
 export const meta = {
-  url: '/cellular-automata',
-  tab: 'Cellular Automata Notes',
+  url: '/ca/2d/3',
+  tab: '2D Cellular Automata Notes #3',
   keywords: ['cellular automata'],
 }
 
-<CA2D
-  h={60}
-  max={1}
-  move={[
+export const caProps = {
+  h: 60,
+  max: 1,
+  move: [
     {
       make: 0,
       test: [
@@ -190,8 +190,12 @@ export const meta = {
         eq(0),
       ],
     },
-  ]}
-  w={60}
+  ],
+  w: 60,
+}
+
+<CA2D
+  {...caProps}
   steps={10000}
 />
 
