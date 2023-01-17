@@ -1,0 +1,49 @@
+import PostLayout from '@components/PostLayout'
+import CA2D from '@components/CA2D'
+import { any, eq } from '@lancejpollard/ca'
+import _ from 'lodash'
+
+export const meta = {
+  url: '/ca/2d/3',
+  tab: '2D Cellular Automata Notes #3',
+  keywords: ['cellular automata'],
+}
+
+export const caProps = {
+  h: 60,
+  max: 1,
+  move: [
+    n => {
+      const sum = _.sum(n)
+      const isLive = n[4] === 1
+      if (isLive && sum >= 3 && sum <= 4) {
+        return 1
+      } else {
+        return -1
+      }
+    },
+    n => {
+      const sum = _.sum(n)
+      const isDead = n[4] === 0
+      if (isDead && sum === 3) {
+        return 1
+      } else {
+        return -1
+      }
+    },
+    n => {
+      const isLive = n[4] === 1
+      return isLive ? 0 : -1
+    },
+  ],
+  w: 60,
+}
+
+<CA2D
+  {...caProps}
+  steps={10000}
+/>
+
+export default ({ children }) => (
+  <PostLayout {...meta}>{children}</PostLayout>
+)

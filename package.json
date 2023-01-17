@@ -8,11 +8,11 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "link": "npm link styled-components next react react-dom"
+    "link": "npm link styled-components next react react-dom @lancejpollard/kit @lancejpollard/ca"
   },
   "dependencies": {
     "@lancejpollard/kit": ">= 0.1.7",
-    "@lancejpollard/ca": ">= 0.1.1",
+    "@lancejpollard/ca": ">= 0.1.3",
     "@mdx-js/loader": "^2.2.1",
     "@mdx-js/react": "^2.2.1",
     "@next/font": "13.1.2",
