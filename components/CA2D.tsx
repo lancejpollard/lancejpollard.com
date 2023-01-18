@@ -11,8 +11,12 @@ type CA2DPropsType = {
   w: number
 }
 
+const Container = Box({
+  paddingVertical: 16,
+  width: '100%',
+})
+
 const Canvas = Box({
-  as: 'canvas',
   shadow: theme.shadows.big,
   width: '100%',
 })
@@ -25,9 +29,12 @@ export default function CA2DComponent({
   steps = 100,
 }: CA2DPropsType) {
   const [canvas, setCanvas] = useState<HTMLCanvasElement>()
-  const ref = useCallback((node: HTMLCanvasElement) => {
-    setCanvas(node ?? undefined)
-  }, [])
+  const ref = useCallback(
+    (node: HTMLCanvasElement) => {
+      setCanvas(node ?? undefined)
+    },
+    [setCanvas],
+  )
 
   useEffect(() => {
     if (!canvas) {
@@ -75,5 +82,12 @@ export default function CA2DComponent({
     }
   }, [h, w, max, move, steps, canvas])
 
-  return <Canvas ref={ref} />
+  return (
+    <Container id="ca-container">
+      <Canvas
+        as="canvas"
+        ref={ref}
+      />
+    </Container>
+  )
 }

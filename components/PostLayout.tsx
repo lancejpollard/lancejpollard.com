@@ -1,8 +1,10 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import Layout from './Layout'
 import { Box, Text, Texture, PagePropsType } from '@lancejpollard/kit'
 import React from 'react'
 import theme from '@configurations/theme'
 import Screen from './Screen'
+import { MDXProvider } from '@mdx-js/react'
 
 export type PostLayoutPropsType = PagePropsType & {
   children: React.ReactNode
@@ -27,7 +29,7 @@ const HeaderTexture = Texture({
 const Title = Text({
   as: 'h1',
   fontFamily: 'text',
-  fontSize: 16,
+  fontSize: 32,
   marginVertical: 32,
   maxWidth: 672,
   paddingHorizontal: 16,
@@ -42,6 +44,10 @@ const Body = Box({
   selectors: {
     '*': {
       fontFamily: 'text',
+      fontHeight: 1.4,
+    },
+    p: {
+      marginBottom: 16,
     },
   },
   size: 16,
@@ -78,28 +84,6 @@ export default function PostLayout({
           <BodyCenter>{children}</BodyCenter>
         </Body>
       </Screen>
-      {/* <section class="move w100v minh100v v">
-        <div class="hc fs16 mtb64">
-          <div class="maxw672 zvw672minw672 plr16">
-            <p class="mb16"></p>
-          </div>
-        </div>
-      </section>
-      <section class="move soil wall"></section>
-      <section class="move wall">
-        <a href="/">
-          <img
-            draggable="false"
-            src="face.png"
-            class="a1"
-            width="128"
-          />
-        </a>
-      </section>
-      <div class="pf v s b16 r16">
-        <div class="wave-r r w32 h32 mb16 tune-soul cp move t4"></div>
-        <div class="wave-r r w32 h32 tune-back cp t4"></div>
-      </div> */}
     </Layout>
   )
 }

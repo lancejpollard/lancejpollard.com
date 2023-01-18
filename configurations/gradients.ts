@@ -16,6 +16,12 @@ const gradients = {
     #fff 75%,
     transparent 100%
   )`,
+  h2: `linear-gradient(
+    transparent 0%,
+    #fff 35%,
+    #fff 65%,
+    transparent 100%
+  )`,
 }
 
 export default gradients

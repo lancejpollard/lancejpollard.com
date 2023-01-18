@@ -1,12 +1,12 @@
 import PostLayout from '@components/PostLayout'
 import CA2D from '@components/CA2D'
-import { any, eq } from '@lancejpollard/ca'
-import _ from 'lodash'
+import { any, eq, sum } from '@lancejpollard/ca'
 
 export const meta = {
-  url: '/ca/2d/4',
-  tab: '2D Cellular Automata Notes #4',
-  keywords: ['cellular automata'],
+  url: '/ca/2d/game-of-life',
+  tab: `Conway's Game of Life`,
+  note: `This is Conway's Game of Life, a 2D cellular automaton, implemented in TypeScript.`,
+  tags: ['cellular automata'],
 }
 
 export const caProps = {
@@ -14,18 +14,18 @@ export const caProps = {
   max: 1,
   move: [
     n => {
-      const sum = _.sum(n)
+      const t = sum(n)
       const isLive = n[4] === 1
-      if (isLive && sum >= 3 && sum <= 4) {
+      if (isLive && t >= 3 && t <= 4) {
         return 1
       } else {
         return -1
       }
     },
     n => {
-      const sum = _.sum(n)
+      const t = sum(n)
       const isDead = n[4] === 0
-      if (isDead && sum === 3) {
+      if (isDead && t === 3) {
         return 1
       } else {
         return -1
@@ -39,10 +39,17 @@ export const caProps = {
   w: 60,
 }
 
+## Automaton
+
 <CA2D
   {...caProps}
   steps={10000}
 />
+
+## Notes
+
+This is Conway's Game of Life, a 2D cellular automaton, implemented in
+TypeScript.
 
 export default ({ children }) => (
   <PostLayout {...meta}>{children}</PostLayout>

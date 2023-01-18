@@ -1,0 +1,40 @@
+import PostLayout from '@components/PostLayout'
+
+export const meta = {
+  url: '/ca',
+  tab: 'Cellular Automata',
+  tags: ['cellular automata'],
+}
+
+## Overview
+
+Cellular automata are technically machines composed of blocks. Each
+block has a set of rules for how it interprets its surrounding
+environment. Every tick of the clock, or every "step", each block
+updates its state to a new state based on its surrounding environment.
+That is, it reads its surrounding and updates its value to a new value
+based on its surroundings.
+
+For a 1D automaton, its surrounding is 2 blocks (if you imagine a tape
+composed of blocks).
+
+For a 2D automaton, its surrounding is 8 blocks (like a tic-tac-toe
+board, where itself is at the center).
+
+So the "center block" reads its surrounding "neighbors", and figures out
+its next value. That's it.
+
+A simple cellular automaton (CA) is one where each block has the same
+set of rules for determining state, and each block can only be in 2
+possible states. We represent the "on" state as purple, and "off" as
+green, in a simple 2-state CA.
+
+We can then generate all kinds of evolving patterns given this state.
+
+## Examples
+
+- [2D Cellular Automata](/ca/2d)
+
+export default ({ children }) => (
+  <PostLayout {...meta}>{children}</PostLayout>
+)
