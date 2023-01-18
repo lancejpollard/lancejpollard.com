@@ -68,6 +68,18 @@ const Body = Box({
     'a:hover': {
       borderBottom: `1px dotted ${theme.colors.purpleLight}`,
     },
+    'h2 *': {
+      fontFamily: 'text',
+      fontHeight: 1.4,
+    },
+    'h3 *': {
+      fontFamily: 'text',
+      fontHeight: 1.4,
+    },
+    'h4 *': {
+      fontFamily: 'text',
+      fontHeight: 1.4,
+    },
     p: {
       marginBottom: 16,
     },
