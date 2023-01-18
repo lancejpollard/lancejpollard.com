@@ -1,12 +1,7 @@
 import PostLayout from '@components/PostLayout'
+import pages from '@configurations/pages'
 import CA2D from '@components/CA2D'
 import { any, eq } from '@lancejpollard/ca'
-
-export const meta = {
-  url: '/ca/2d/2',
-  tab: '2D Cellular Automata Notes #2',
-  tags: ['cellular automata'],
-}
 
 <CA2D
   h={60}
@@ -283,8 +278,6 @@ export const meta = {
   steps={10000}
 />
 
-## End
-
 export default ({ children }) => (
-  <PostLayout {...meta}>{children}</PostLayout>
+  <PostLayout {...pages.ca['2d']['2']}>{children}</PostLayout>
 )

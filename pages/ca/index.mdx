@@ -2,12 +2,7 @@ import PostLayout from '@components/PostLayout'
 import CA1DSelf from '@components/CA1DSelf'
 import CA2DSelf from '@components/CA2DSelf'
 import theme from '@configurations/theme'
-
-export const meta = {
-  url: '/ca',
-  tab: 'Cellular Automata',
-  tags: ['cellular automata'],
-}
+import pages from '@configurations/pages'
 
 ## Overview
 
@@ -135,8 +130,6 @@ is.
 
 - [2D Cellular Automata](/ca/2d)
 
-## End
-
 export default ({ children }) => (
-  <PostLayout {...meta}>{children}</PostLayout>
+  <PostLayout {...pages.ca}>{children}</PostLayout>
 )

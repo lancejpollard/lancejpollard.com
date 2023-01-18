@@ -20,8 +20,20 @@ const Copy = styled.div({
   ol: {
     marginBottom: 32,
   },
+  'ol * ol': {
+    marginBottom: 0,
+  },
+  'ol * ul': {
+    marginBottom: 0,
+  },
   ul: {
     marginBottom: 32,
+  },
+  'ul * ol': {
+    marginBottom: 0,
+  },
+  'ul * ul': {
+    marginBottom: 0,
   },
 })
 

@@ -1,12 +1,7 @@
 import PostLayout from '@components/PostLayout'
 import CA2DSelf from '@components/CA2DSelf'
 import theme from '@configurations/theme'
-
-export const meta = {
-  url: '/ca/2d',
-  tab: '2D Cellular Automata',
-  tags: ['cellular automata'],
-}
+import pages from '@configurations/pages'
 
 ## Overview
 
@@ -76,8 +71,6 @@ the complex behavior emerges from that.
 - [Experiment #2](/ca/2d/2)
 - [Experiment #3](/ca/2d/3)
 
-## End
-
 export default ({ children }) => (
-  <PostLayout {...meta}>{children}</PostLayout>
+  <PostLayout {...pages.ca['2d']}>{children}</PostLayout>
 )

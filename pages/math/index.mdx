@@ -1,0 +1,41 @@
+import PostLayout from '@components/PostLayout'
+import pages from '@configurations/pages'
+
+## Overview
+
+This page tries to explain to a layman why math is interesting and
+important. First it describes what the math is that we learn through
+high school and college, then what "real" math actually is. Then we try
+to explain why that "real math" is very interesting, as opposed to the
+"school math".
+
+## School Math is not "Real" Math
+
+School math is mainly involving numbers and
+adding/subtracting/multiplying/dividing the numbers. At some point you
+learn to deal with variables, but still revolving around numbers. Then
+you might get into calculus, where you deal with super small numbers. If
+you go into engineering or just beyond calculus, you might get into
+matrices and stuff like that, but it all involves numbers, too.
+
+This makes us think that **math is numbers**. But this is not true. Math
+is not just numbers.
+
+## "Real" Math
+
+"Real" math is what you learn in graduate school or as a math major with
+a few years of weeder courses under your belt. Real math involves
+"objects", "collections" of objects, and "relations" among those objects
+and collections. One important class of these objects is "functions",
+which take input objects and transform them to output objects.
+
+Real math is interesting when you study
+[Group Theory](https://en.wikipedia.org/wiki/Group_theory), which
+teaches you one modern and mainstream foundation to math. It teaches you
+about [symmetries](/math/symmetries) within collections. Basically it
+teaches you about patterns, not necessarily using numbers (though
+numbers can be an easy/familiar example to work with).
+
+export default ({ children }) => (
+  <PostLayout {...pages.math}>{children}</PostLayout>
+)

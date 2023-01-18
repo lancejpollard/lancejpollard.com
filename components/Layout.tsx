@@ -12,6 +12,7 @@ import React from 'react'
 import { ThemeProvider } from 'styled-components'
 import { MDXProvider } from '@mdx-js/react'
 import _ from 'lodash'
+import GG from './GG'
 
 type LayoutPropsType = PagePropsType & {
   children: React.ReactNode
@@ -54,6 +55,15 @@ const Li = Box({
 const LinkCotent = Box({
   as: 'a',
   direction: 'vertical',
+  position: 'relative',
+})
+
+const LinkIcon = Box({
+  height: 16,
+  invisible: true,
+  left: -32,
+  position: 'absolute',
+  width: 16,
 })
 
 const components = {
@@ -65,6 +75,9 @@ const components = {
         className="header"
         href={`#${id}`}
       >
+        <LinkIcon className="gg-container">
+          <GG type="link" />
+        </LinkIcon>
         <H2Container>
           <H2Content {...props}>{children}</H2Content>
           <H2Texture />
@@ -95,9 +108,14 @@ export default function Layout({
     <>
       <Head
         url={url}
-        title={tab}
+        title={`${tab} by Lance Pollard`}
         note={note}
         tags={tags}
+        icon="/images/rabbit.svg"
+        host="https://lancejpollard.com"
+        image={`https://lancejpollard/api/social?path=${url}"`}
+        site="Lance Pollard"
+        twitterHandle="@lancejpollard"
       />
       <ThemeProvider theme={theme}>
         <>

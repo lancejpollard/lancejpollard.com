@@ -52,6 +52,20 @@ const Title = Text({
   width: '100%',
 })
 
+const TubeContainer = Box({
+  height: '200vh',
+  width: '100%',
+})
+
+const TubeTexture = Texture({
+  fill: theme.images.tube,
+  mask: theme.gradients.band,
+  opacity: 0.7,
+  repeat: true,
+  size: 672,
+  stretch: true,
+})
+
 const Body = Box({
   // align: 'center' as const,
   justify: 'center' as const,
@@ -61,6 +75,9 @@ const Body = Box({
     '*': {
       fontFamily: 'latin',
       fontHeight: 1.7,
+    },
+    'a:hover .gg-container': {
+      invisible: false,
     },
     'a:hover:not(.header)': {
       borderBottom: `1px dotted ${theme.colors.purpleLight}`,
@@ -124,7 +141,7 @@ export default function PostLayout({
   return (
     <Layout
       url={url}
-      tab={`${tab} @ Lance Pollard`}
+      tab={tab}
       note={note}
       tags={tags}
     >
@@ -139,6 +156,9 @@ export default function PostLayout({
         <Body>
           <BodyCenter>{children}</BodyCenter>
         </Body>
+        <TubeContainer>
+          <TubeTexture />
+        </TubeContainer>
         <Footer>
           <Link href="/">
             <Rabbit />

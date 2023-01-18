@@ -1,13 +1,7 @@
 import PostLayout from '@components/PostLayout'
 import CA2D from '@components/CA2D'
+import pages from '@configurations/pages'
 import { any, eq, sum } from '@lancejpollard/ca'
-
-export const meta = {
-  url: '/ca/2d/game-of-life',
-  tab: `Conway's Game of Life`,
-  note: `This is Conway's Game of Life, a 2D cellular automaton, implemented in TypeScript.`,
-  tags: ['cellular automata'],
-}
 
 export const caProps = {
   h: 60,
@@ -59,8 +53,8 @@ life-like patterns given only 3 rules:
 1. All other live cells die in the next generation. Similarly, all other
    dead cells stay dead.
 
-## End
-
 export default ({ children }) => (
-  <PostLayout {...meta}>{children}</PostLayout>
+  <PostLayout {...pages.ca['2d']['game-of-life']}>
+    {children}
+  </PostLayout>
 )
