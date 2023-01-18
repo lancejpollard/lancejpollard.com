@@ -81,20 +81,18 @@ export default async function handler({ url }: NextRequest) {
     </div>
   )
 
-  const options = {
-    fonts: [
-      {
-        data: fontData,
-        name: 'text',
-        style: 'normal',
-      },
-    ],
-    height: 640,
-    width: 1280,
-  }
-
   try {
-    return new ImageResponse(content, options)
+    return new ImageResponse(content, {
+      fonts: [
+        {
+          data: fontData,
+          name: 'text',
+          style: 'normal',
+        },
+      ],
+      height: 640,
+      width: 1280,
+    })
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (e: any) {
     if (e instanceof Error) {
