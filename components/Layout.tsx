@@ -116,6 +116,7 @@ export default function Layout({
         image={`https://lancejpollard.com/api/social?path=${url}`}
         site="Lance Pollard"
         twitterHandle="@lancejpollard"
+        twitterCreatorHandle="@lancejpollard"
       />
       <ThemeProvider theme={theme}>
         <>
