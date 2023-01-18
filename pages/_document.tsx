@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import Document, {
   Html,
   Head,
@@ -17,7 +18,7 @@ export async function getInitialProps(ctx: DocumentContext) {
   try {
     ctx.renderPage = () =>
       originalRenderPage({
-        enhanceApp: App => props =>
+        enhanceApp: App => (props: React.ComponentProps<any>) =>
           sheet.collectStyles(<App {...props} />),
       })
 

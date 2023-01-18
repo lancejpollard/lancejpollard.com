@@ -10,7 +10,7 @@ export function isPageInfo(object: unknown): object is PageInfoType {
     object != null &&
     typeof object === 'object' &&
     'url' in object &&
-    _.isString(object.url)
+    typeof object.url === 'string'
   )
 }
 
