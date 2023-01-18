@@ -29,30 +29,20 @@ const Self = Box({
 const Block = Box({
   align: 'center',
   aspectRatio: '1 / 1',
-  height: 40,
   justify: 'center',
-})
-
-const TextBlock = Text({
-  fontHeight: 0,
+  width: `calc(100% * (1/7) - 8px)`,
 })
 
 export default function CA2DSelf({ colors = [] }: CA2DSelfPropsType) {
   return (
     <Container>
       <Self>
-        <Block>
-          <TextBlock as="span">...</TextBlock>
-        </Block>
         {colors.map((color, i) => (
           <Block
             key={i}
             fill={color}
           />
         ))}
-        <Block>
-          <TextBlock as="span">...</TextBlock>
-        </Block>
       </Self>
     </Container>
   )

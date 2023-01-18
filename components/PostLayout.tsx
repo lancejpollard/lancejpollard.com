@@ -20,7 +20,6 @@ const Header = Box({
   as: 'header',
   justify: 'center' as const,
   minHeight: '100vh',
-  paddingHorizontal: 16,
   width: '100%',
 })
 
@@ -36,12 +35,15 @@ const HeaderContent = Box({
   align: 'center' as const,
   direction: 'vertical' as const,
   justify: 'center' as const,
+  paddingHorizontal: 16,
   paddingVertical: 32,
+  width: '100%',
 })
 
 const Title = Text({
   align: 'center' as const,
   as: 'h1',
+  breakWord: true,
   fontFamily: 'text',
   fontSize: 32,
   lineHeight: 1.4,
