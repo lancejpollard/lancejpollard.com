@@ -113,7 +113,7 @@ export default function Layout({
         tags={tags}
         icon="/images/rabbit.svg"
         host="https://lancejpollard.com"
-        image={`https://lancejpollard/api/social?path=${url}"`}
+        image={`https://lancejpollard.com/api/social?path=${url}`}
         site="Lance Pollard"
         twitterHandle="@lancejpollard"
       />
