@@ -16,7 +16,7 @@ export default function SocialTitle({
         display: 'flex',
         flexDirection: 'column',
         gap: 8,
-        marginTop: 16,
+        marginTop: 32,
       }}
     >
       <div

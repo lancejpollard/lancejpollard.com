@@ -1,7 +1,7 @@
 - [Cellular Automata](/ca)
   - [2D Cellular Automata](/ca/2d)
 - [Math](/math)
-  - [Symmetries of Math](/math/symmetries)
+  - [Symmetries in Math](/math/symmetries)
   - [Foundations of Mathematics](/math/foundations)
 - [Code](/code)
   - [Ideal State](/code/ideal)

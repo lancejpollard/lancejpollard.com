@@ -37,7 +37,9 @@ export default async function handler({ url }: NextRequest) {
     }
   })
 
-  const page = pageInfo ? (pageInfo as PageInfoType) : pages
+  const page = pageInfo
+    ? (pageInfo as PageInfoType)
+    : (pages as PageInfoType)
 
   const content = (
     <div
@@ -54,9 +56,12 @@ export default async function handler({ url }: NextRequest) {
       }}
     >
       <img
-        src={generateUrl(theme.images.face)}
-        width={400 * 0.85}
-        height={400}
+        src={
+          page.image
+            ? generateUrl(page.image)
+            : generateUrl(theme.images.face)
+        }
+        height={380}
         alt="Rabbit face"
       />
       <div

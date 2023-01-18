@@ -1,4 +1,5 @@
 export type PageInfoType = {
+  image?: string
   note?: string
   tab: string
   tags?: Array<string>
