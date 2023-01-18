@@ -91,7 +91,8 @@ const components = {
         as="li"
         {...props}
       >
-        * {children}
+        <span>* </span>
+        {children}
       </Li>
     )
   },

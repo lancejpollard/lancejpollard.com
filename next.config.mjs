@@ -49,6 +49,11 @@ const nextConfig = withMDX({
       extensions: ['.ts', '.tsx', '.js', '.json'],
     }
 
+    config.module.rules.push({
+      test: /\.(glsl|vs|fs|vert|frag)$/,
+      type: 'asset/source',
+    })
+
     return config
   },
 })

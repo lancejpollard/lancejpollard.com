@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "@lancejpollard/ca": "^0.1.4",
-    "@lancejpollard/kit": "^0.1.12",
+    "@lancejpollard/kit": "^0.1.13",
     "@mdx-js/loader": "^2.2.1",
     "@mdx-js/react": "^2.2.1",
     "@next/font": "13.1.2",
@@ -22,6 +22,7 @@
     "csstype": "^3.1.1",
     "eslint": "8.31.0",
     "eslint-config-next": "13.1.2",
+    "gl-matrix": "^3.4.3",
     "lodash": "^4.17.21",
     "next": "^13.1.2",
     "next-mdx-remote": "^4.2.1",
@@ -58,6 +59,7 @@
     "eslint-plugin-sort-exports": "^0.8.0",
     "eslint-plugin-sort-keys": "^2.3.5",
     "eslint-plugin-typescript-sort-keys": "^2.1.0",
-    "prettier": "^2.8.2"
+    "prettier": "^2.8.2",
+    "ts-shader-loader": "^2.0.2"
   }
 }
