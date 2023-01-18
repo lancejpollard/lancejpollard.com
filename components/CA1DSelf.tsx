@@ -30,7 +30,7 @@ const Block = Box({
   align: 'center',
   aspectRatio: '1 / 1',
   justify: 'center',
-  width: `calc(100% * (1/7) - 8px)`,
+  width: `calc(100% * (1/7) - (48px / 7))`,
 })
 
 export default function CA2DSelf({ colors = [] }: CA2DSelfPropsType) {
