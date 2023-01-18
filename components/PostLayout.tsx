@@ -62,11 +62,11 @@ const Body = Box({
       fontFamily: 'latin',
       fontHeight: 1.7,
     },
-    a: {
-      borderBottom: `1px dotted black`,
-    },
-    'a:hover': {
+    'a:hover:not(.header)': {
       borderBottom: `1px dotted ${theme.colors.purpleLight}`,
+    },
+    'a:not(.header)': {
+      borderBottom: `1px dotted black`,
     },
     'h2 *': {
       fontFamily: 'text',

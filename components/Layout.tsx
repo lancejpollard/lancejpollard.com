@@ -5,11 +5,13 @@ import {
   Text,
   PagePropsType,
   Texture,
+  Link,
 } from '@lancejpollard/kit'
 import theme from '@configurations/theme'
 import React from 'react'
 import { ThemeProvider } from 'styled-components'
 import { MDXProvider } from '@mdx-js/react'
+import _ from 'lodash'
 
 type LayoutPropsType = PagePropsType & {
   children: React.ReactNode
@@ -44,23 +46,30 @@ const H2Texture = Texture({
   width: '100%',
 })
 
-const Asterisk = Box({
-  align: 'center',
-  justify: 'center',
-})
-
 const Li = Box({
   align: 'center',
   display: 'block',
 })
 
+const LinkCotent = Box({
+  as: 'a',
+  direction: 'vertical',
+})
+
 const components = {
-  h2: (props: React.ComponentProps<any>) => {
+  h2: ({ children, ...props }: React.ComponentProps<any>) => {
+    const id = _.kebabCase(children as string)
     return (
-      <H2Container>
-        <H2Content {...props} />
-        <H2Texture />
-      </H2Container>
+      <LinkCotent
+        id={id}
+        className="header"
+        href={`#${id}`}
+      >
+        <H2Container>
+          <H2Content {...props}>{children}</H2Content>
+          <H2Texture />
+        </H2Container>
+      </LinkCotent>
     )
   },
   li: ({ children, ...props }: React.ComponentProps<any>) => {
