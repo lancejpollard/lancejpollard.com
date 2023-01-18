@@ -5,11 +5,10 @@ import {
   Text,
   PagePropsType,
   Texture,
-  Link,
 } from '@lancejpollard/kit'
 import theme from '@configurations/theme'
 import React from 'react'
-import { ThemeProvider } from 'styled-components'
+import styled, { ThemeProvider } from 'styled-components'
 import { MDXProvider } from '@mdx-js/react'
 import _ from 'lodash'
 import GG from './GG'
@@ -47,11 +46,6 @@ const H2Texture = Texture({
   width: '100%',
 })
 
-const Li = Box({
-  align: 'center',
-  display: 'block',
-})
-
 const LinkCotent = Box({
   as: 'a',
   direction: 'vertical',
@@ -66,11 +60,32 @@ const LinkIcon = Box({
   width: 16,
 })
 
+const Ul = styled.ul({
+  li: {
+    display: 'list-item',
+  },
+  'li:before': {
+    content: "'*'",
+    fontFamily: 'text',
+    paddingLeft: 12,
+    paddingRight: 12,
+  },
+})
+
+const Ol = styled.ol({
+  li: {
+    display: 'list-item',
+  },
+  listStyleType: 'decimal',
+  marginLeft: 32,
+})
+
 const components = {
   h2: ({ children, ...props }: React.ComponentProps<any>) => {
     const id = _.kebabCase(children as string)
     return (
       <LinkCotent
+        {...props}
         id={id}
         className="header"
         href={`#${id}`}
@@ -79,22 +94,17 @@ const components = {
           <GG type="link" />
         </LinkIcon>
         <H2Container>
-          <H2Content {...props}>{children}</H2Content>
+          <H2Content>{children}</H2Content>
           <H2Texture />
         </H2Container>
       </LinkCotent>
     )
   },
-  li: ({ children, ...props }: React.ComponentProps<any>) => {
-    return (
-      <Li
-        as="li"
-        {...props}
-      >
-        <span>* </span>
-        {children}
-      </Li>
-    )
+  ol: (props: React.ComponentProps<any>) => {
+    return <Ol {...props} />
+  },
+  ul: (props: React.ComponentProps<any>) => {
+    return <Ul {...props} />
   },
 }
 
