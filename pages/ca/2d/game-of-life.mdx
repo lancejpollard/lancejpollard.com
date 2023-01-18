@@ -51,6 +51,14 @@ export const caProps = {
 This is Conway's Game of Life, a 2D cellular automaton, implemented in
 TypeScript.
 
+It is interesting because it shows that a 2D CA can have interesting,
+life-like patterns given only 3 rules:
+
+1. Any live cell with two or three live neighbours survives.
+1. Any dead cell with three live neighbours becomes a live cell.
+1. All other live cells die in the next generation. Similarly, all other
+   dead cells stay dead.
+
 export default ({ children }) => (
   <PostLayout {...meta}>{children}</PostLayout>
 )

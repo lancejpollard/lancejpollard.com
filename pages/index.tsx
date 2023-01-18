@@ -11,6 +11,7 @@ import {
 import theme from '@configurations/theme'
 import Poem from '@contents/poem.md'
 import Description from '@contents/description.md'
+import Main from '@contents/main.md'
 import Layout from '@components/Layout'
 import Copy from '@components/Copy'
 import useScrollIntoView from '@hooks/useScrollIntoView'
@@ -23,6 +24,7 @@ const QuestionMark = Text({
 const DescriptionCenter = Box({
   maxWidth: 672,
   paddingVertical: 128,
+  width: '100%',
 })
 
 const DescriptionContainer = Box({
@@ -211,6 +213,13 @@ export default function Page({ url, tab, note, tags }: PagePropsType) {
         <HoleContainer>
           <HoleTexture />
         </HoleContainer>
+        <DescriptionContainer>
+          <DescriptionCenter>
+            <Copy>
+              <Main />
+            </Copy>
+          </DescriptionCenter>
+        </DescriptionContainer>
         <TubeContainer>
           <TubeTexture />
         </TubeContainer>

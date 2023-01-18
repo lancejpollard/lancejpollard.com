@@ -23,7 +23,9 @@ const H2Container = Box({
 })
 
 const H2Content = Text({
+  fontFamily: 'text',
   fontSize: 24,
+  lineHeight: 1.4,
   paddingBottom: 8,
   width: '100%',
 })
@@ -37,6 +39,16 @@ const H2Texture = Texture({
   width: '100%',
 })
 
+const Asterisk = Box({
+  align: 'center',
+  justify: 'center',
+})
+
+const Li = Box({
+  align: 'center',
+  display: 'block',
+})
+
 const components = {
   h2: (props: React.ComponentProps<any>) => {
     return (
@@ -44,6 +56,16 @@ const components = {
         <H2Content {...props} />
         <H2Texture />
       </H2Container>
+    )
+  },
+  li: ({ children, ...props }: React.ComponentProps<any>) => {
+    return (
+      <Li
+        as="li"
+        {...props}
+      >
+        * {children}
+      </Li>
     )
   },
 }

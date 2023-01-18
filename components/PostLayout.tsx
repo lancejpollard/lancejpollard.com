@@ -45,8 +45,8 @@ const Body = Box({
   minHeight: '100vh',
   selectors: {
     '*': {
-      fontFamily: 'text',
-      fontHeight: 1.4,
+      fontFamily: 'latin',
+      fontHeight: 1.7,
     },
     p: {
       marginBottom: 16,

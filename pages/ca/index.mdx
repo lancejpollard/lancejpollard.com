@@ -1,4 +1,7 @@
 import PostLayout from '@components/PostLayout'
+import CA1DSelf from '@components/CA1DSelf'
+import CA2DSelf from '@components/CA2DSelf'
+import theme from '@configurations/theme'
 
 export const meta = {
   url: '/ca',
@@ -18,11 +21,80 @@ based on its surroundings.
 For a 1D automaton, its surrounding is 2 blocks (if you imagine a tape
 composed of blocks).
 
+<CA1DSelf
+  colors={[
+    theme.colors.white3,
+    theme.colors.white3,
+    theme.colors.green,
+    theme.colors.purple,
+    theme.colors.green,
+    theme.colors.white3,
+    theme.colors.white3,
+  ]}
+/>
+
+Notice the purple is the focused block, the green are the neighbors, and
+the grey are not direct neighbors.
+
 For a 2D automaton, its surrounding is 8 blocks (like a tic-tac-toe
 board, where itself is at the center).
 
+<CA2DSelf
+  colors={[
+    [
+      theme.colors.white3,
+      theme.colors.white3,
+      theme.colors.white3,
+      theme.colors.white3,
+      theme.colors.white3,
+      theme.colors.white3,
+      theme.colors.white3,
+    ],
+    [
+      theme.colors.white3,
+      theme.colors.white3,
+      theme.colors.green,
+      theme.colors.green,
+      theme.colors.green,
+      theme.colors.white3,
+      theme.colors.white3,
+    ],
+    [
+      theme.colors.white3,
+      theme.colors.white3,
+      theme.colors.green,
+      theme.colors.purple,
+      theme.colors.green,
+      theme.colors.white3,
+      theme.colors.white3,
+    ],
+    [
+      theme.colors.white3,
+      theme.colors.white3,
+      theme.colors.green,
+      theme.colors.green,
+      theme.colors.green,
+      theme.colors.white3,
+      theme.colors.white3,
+    ],
+    [
+      theme.colors.white3,
+      theme.colors.white3,
+      theme.colors.white3,
+      theme.colors.white3,
+      theme.colors.white3,
+      theme.colors.white3,
+      theme.colors.white3,
+    ],
+  ]}
+/>
+
 So the "center block" reads its surrounding "neighbors", and figures out
 its next value. That's it.
+
+In our 2D CA's, green is the "off" state, and purple is the "on" state.
+Or you could think about it as green = 0, purple = 1, or green = dead,
+purple = alive, whatever, it is just 2 states.
 
 A simple cellular automaton (CA) is one where each block has the same
 set of rules for determining state, and each block can only be in 2

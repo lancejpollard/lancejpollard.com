@@ -1,4 +1,6 @@
 import PostLayout from '@components/PostLayout'
+import CA2DSelf from '@components/CA2DSelf'
+import theme from '@configurations/theme'
 
 export const meta = {
   url: '/ca/2d',
@@ -6,9 +8,67 @@ export const meta = {
   tags: ['cellular automata'],
 }
 
+For a 2D automaton, its surrounding is 8 blocks (like a tic-tac-toe
+board, where itself is at the center).
+
+<CA2DSelf
+  colors={[
+    [
+      theme.colors.white3,
+      theme.colors.white3,
+      theme.colors.white3,
+      theme.colors.white3,
+      theme.colors.white3,
+      theme.colors.white3,
+      theme.colors.white3,
+    ],
+    [
+      theme.colors.white3,
+      theme.colors.white3,
+      theme.colors.green,
+      theme.colors.green,
+      theme.colors.green,
+      theme.colors.white3,
+      theme.colors.white3,
+    ],
+    [
+      theme.colors.white3,
+      theme.colors.white3,
+      theme.colors.green,
+      theme.colors.purple,
+      theme.colors.green,
+      theme.colors.white3,
+      theme.colors.white3,
+    ],
+    [
+      theme.colors.white3,
+      theme.colors.white3,
+      theme.colors.green,
+      theme.colors.green,
+      theme.colors.green,
+      theme.colors.white3,
+      theme.colors.white3,
+    ],
+    [
+      theme.colors.white3,
+      theme.colors.white3,
+      theme.colors.white3,
+      theme.colors.white3,
+      theme.colors.white3,
+      theme.colors.white3,
+      theme.colors.white3,
+    ],
+  ]}
+/>
+
+So the "center block" reads its surrounding "neighbors", and figures out
+its next value. That's it.
+
 ## Examples
 
 - [Game of Life Cellular Automaton](/ca/2d/game-of-life)
+- [Experiment #2](/ca/2d/2)
+- [Experiment #3](/ca/2d/3)
 
 export default ({ children }) => (
   <PostLayout {...meta}>{children}</PostLayout>
