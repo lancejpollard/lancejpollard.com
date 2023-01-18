@@ -10,10 +10,10 @@ const gradients = {
   )`,
   band3: `linear-gradient(
     transparent 0%,
-    #fff 25%,
-    transparent 40%,
-    transparent 60%,
-    #fff 75%,
+    #fff 20%,
+    transparent 35%,
+    transparent 65%,
+    #fff 80%,
     transparent 100%
   )`,
   h2: `linear-gradient(

@@ -1,10 +1,15 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import Layout from './Layout'
-import { Box, Text, Texture, PagePropsType } from '@lancejpollard/kit'
+import {
+  Box,
+  Text,
+  Texture,
+  PagePropsType,
+  Link,
+} from '@lancejpollard/kit'
 import React from 'react'
 import theme from '@configurations/theme'
 import Screen from './Screen'
-import { MDXProvider } from '@mdx-js/react'
 
 export type PostLayoutPropsType = PagePropsType & {
   children: React.ReactNode
@@ -15,6 +20,7 @@ const Header = Box({
   as: 'header',
   justify: 'center' as const,
   minHeight: '100vh',
+  paddingHorizontal: 16,
   width: '100%',
 })
 
@@ -26,15 +32,21 @@ const HeaderTexture = Texture({
   stretch: true,
 })
 
+const HeaderContent = Box({
+  align: 'center' as const,
+  direction: 'vertical' as const,
+  justify: 'center' as const,
+  paddingVertical: 32,
+})
+
 const Title = Text({
   align: 'center' as const,
   as: 'h1',
   fontFamily: 'text',
   fontSize: 32,
   lineHeight: 1.4,
-  marginVertical: 32,
+  marginTop: 8,
   maxWidth: 672,
-  paddingHorizontal: 16,
   width: '100%',
 })
 
@@ -47,6 +59,12 @@ const Body = Box({
     '*': {
       fontFamily: 'latin',
       fontHeight: 1.7,
+    },
+    a: {
+      borderBottom: `1px dotted black`,
+    },
+    'a:hover': {
+      borderBottom: `1px dotted ${theme.colors.purpleLight}`,
     },
     p: {
       marginBottom: 16,
@@ -63,6 +81,22 @@ const BodyCenter = Box({
   width: '100%',
 })
 
+const Footer = Box({
+  align: 'center' as const,
+  as: 'footer',
+  justify: 'center' as const,
+  minHeight: '100vh',
+  width: '100%',
+})
+
+const Rabbit = Texture({
+  animation: theme.animations.jump.fast,
+  as: 'img',
+  draggable: 'false',
+  height: 128,
+  src: theme.images.face,
+})
+
 export default function PostLayout({
   url,
   tab,
@@ -70,6 +104,9 @@ export default function PostLayout({
   note,
   children,
 }: PostLayoutPropsType) {
+  const urlParts = url.split('/')
+  urlParts.pop()
+  const previousUrl = urlParts.length > 1 ? urlParts.join('/') : '/'
   return (
     <Layout
       url={url}
@@ -80,11 +117,19 @@ export default function PostLayout({
       <Screen>
         <Header>
           <HeaderTexture />
-          <Title>{tab}</Title>
+          <HeaderContent>
+            <Link href={previousUrl}>▲</Link>
+            <Title>{tab}</Title>
+          </HeaderContent>
         </Header>
         <Body>
           <BodyCenter>{children}</BodyCenter>
         </Body>
+        <Footer>
+          <Link href="/">
+            <Rabbit />
+          </Link>
+        </Footer>
       </Screen>
     </Layout>
   )

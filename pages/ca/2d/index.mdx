@@ -8,6 +8,8 @@ export const meta = {
   tags: ['cellular automata'],
 }
 
+## Overview
+
 For a 2D automaton, its surrounding is 8 blocks (like a tic-tac-toe
 board, where itself is at the center).
 
@@ -62,7 +64,11 @@ board, where itself is at the center).
 />
 
 So the "center block" reads its surrounding "neighbors", and figures out
-its next value. That's it.
+its next value. Every block in the grid is doing this, so if you think
+about it and watch the grid change, you'll notice it seems super
+complicated to determine how each block is changing. But really, the
+changes are based on the current state and reading its neighbors. All
+the complex behavior emerges from that.
 
 ## Examples
 

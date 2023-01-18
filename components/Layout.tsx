@@ -16,6 +16,11 @@ type LayoutPropsType = PagePropsType & {
 }
 
 const H2Container = Box({
+  '*': {
+    fontFamily: 'text',
+    fontSize: 24,
+    lineHeight: 1.4,
+  },
   as: 'h2',
   direction: 'vertical' as const,
   paddingVertical: 16,

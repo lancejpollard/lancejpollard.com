@@ -61,3 +61,7 @@ body {
     box-shadow: -38px 0, -14px 0, 14px 0, 38px -12px;
   }
 }
+
+a:hover {
+  color: hsl(254, 87%, 70%);
+}
