@@ -27,9 +27,11 @@ const HeaderTexture = Texture({
 })
 
 const Title = Text({
+  align: 'center' as const,
   as: 'h1',
   fontFamily: 'text',
   fontSize: 32,
+  lineHeight: 1.4,
   marginVertical: 32,
   maxWidth: 672,
   paddingHorizontal: 16,
