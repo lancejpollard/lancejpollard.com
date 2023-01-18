@@ -63,6 +63,7 @@ const LinkIcon = Box({
 const Ul = styled.ul({
   li: {
     display: 'list-item',
+    marginBottom: 4,
   },
   'li:before': {
     content: "'*'",
@@ -70,14 +71,17 @@ const Ul = styled.ul({
     paddingLeft: 12,
     paddingRight: 12,
   },
+  marginTop: 4,
 })
 
 const Ol = styled.ol({
   li: {
     display: 'list-item',
+    marginBottom: 4,
   },
   listStyleType: 'decimal',
   marginLeft: 32,
+  marginTop: 4,
 })
 
 const components = {
