@@ -5,7 +5,7 @@ import { ImageResponse } from '@vercel/og'
 import theme from '@configurations/theme'
 import pages from '@configurations/pages'
 import SocialTitle from '@components/SocialTitle'
-import { isRecord, isPageInfo, PageInfoType } from '@utils/types'
+import { isRecord, PageInfoType } from '@utils/types'
 
 export const config = {
   runtime: 'edge',
@@ -71,12 +71,10 @@ export default async function handler({ url }: NextRequest) {
           width: '100%',
         }}
       >
-        {isPageInfo(page) && (
-          <SocialTitle
-            title={page.tab}
-            author="Lance Pollard"
-          />
-        )}
+        <SocialTitle
+          title={page.tab}
+          author="Lance Pollard"
+        />
       </div>
     </div>
   )

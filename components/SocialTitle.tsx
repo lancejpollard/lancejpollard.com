@@ -1,27 +1,9 @@
-import { Box, Text } from '@lancejpollard/kit'
 import React from 'react'
 
 type SocialTitlePropsType = {
   author: string
   title: string
 }
-
-const Container = Box({
-  direction: 'vertical' as const,
-  width: '100%',
-})
-
-const BigText = Text({
-  align: 'center' as const,
-  fontSize: 48,
-  width: '100%',
-})
-
-const SmallText = Text({
-  align: 'center' as const,
-  fontSize: 24,
-  width: '100%',
-})
 
 export default function SocialTitle({
   title,

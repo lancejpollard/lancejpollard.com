@@ -1,5 +1,3 @@
-import _ from 'lodash'
-
 export type PageInfoType = {
   note?: string
   tab: string
@@ -8,11 +6,16 @@ export type PageInfoType = {
 }
 
 export function isPageInfo(object: unknown): object is PageInfoType {
-  return _.isObject(object) && 'url' in object && _.isString(object.url)
+  return (
+    object != null &&
+    typeof object === 'object' &&
+    'url' in object &&
+    _.isString(object.url)
+  )
 }
 
 export function isRecord(
   object: unknown,
 ): object is Record<string, unknown> {
-  return _.isObject(object)
+  return object != null && typeof object === 'object'
 }
