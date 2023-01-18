@@ -1,4 +1,5 @@
 - [Cellular Automata](/ca)
+  - [Hyperbolic Cellular Automata](/ca/hyp)
   - [2D Cellular Automata](/ca/2d)
 - [Math](/math)
   - [Symmetries in Math](/math/symmetries)
