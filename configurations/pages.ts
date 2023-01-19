@@ -5,6 +5,16 @@ const pages = {
   tab: 'Notes',
   tags: ['lancejpollard', 'software engineer'],
   url: '/',
+  graphics: {
+    url: '/graphics',
+    tab: 'Graphics Notes',
+    tags: ['graphics'],
+    '2d': {
+      url: '/graphics/2d',
+      tab: '2D Graphics Notes',
+      tags: ['2d graphics'],
+    },
+  },
   ca: {
     url: '/ca',
     tab: 'Cellular Automata Notes',

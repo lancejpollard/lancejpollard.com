@@ -1,0 +1,47 @@
+import PostLayout from '@components/PostLayout'
+import pages from '@configurations/pages'
+
+## Notes
+
+Things to test with a modern 2D graphics engine:
+
+- Hyperbolic Tessellation
+- 2D Cellular Automaton
+- Particle System
+- Draggable List Items
+- Animated UI construction
+- Animated UI teardown
+- Physics splash on button press
+  - Material UI button
+- Confetti pop and fall
+- 2D liquid
+  - https://github.com/anothrNick/2D-Water-Javascript-Demo
+  - https://github.com/asadm/SPHjs
+- 2D gas/smoke
+  - https://github.com/bijection/smoke.js
+  - https://2d-smoke.vercel.app/
+- 2D fire
+  - https://speckyboy.com/flame-effects-code-snippets/
+- Gravity drop
+- Spring animation
+- Sequential animation
+- Geographic Maps
+- Rigged Cartoon Character
+- 2D game
+- Family Tree Chart
+- Force Diagram
+- 2D molecule diagram
+- 2D cell diagram
+- 2D polygon
+  - https://codepen.io/jasonsturges/pen/gOrpGrd
+- Shape-shifting layout animation
+  - https://uclab.fh-potsdam.de/fw4/en/vis/
+- Zoom in/out animation
+- Parallax Scrolling
+- Load on demand while scrolling
+
+Going to try and use Pixi.js as the underlying engine.
+
+export default ({ children }) => (
+  <PostLayout {...pages.graphics['2d']}>{children}</PostLayout>
+)

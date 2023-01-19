@@ -64,12 +64,14 @@ const Ul = styled.ul({
   li: {
     display: 'list-item',
     marginBottom: 4,
+    paddingLeft: 24,
   },
   'li:before': {
     content: "'*'",
     fontFamily: 'text',
-    paddingLeft: 12,
-    paddingRight: 12,
+    left: 0,
+    position: 'absolute',
+    top: 5,
   },
   marginTop: 4,
 })

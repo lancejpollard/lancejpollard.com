@@ -1,7 +1,7 @@
 import theme from '@configurations/theme'
 import { Box } from '@lancejpollard/kit'
 import React, { useEffect, useCallback, useState } from 'react'
-// import main from '@utils/hypCa'
+import main from '@utils/hypCa'
 
 type HypCAPropsType = {}
 
@@ -29,7 +29,7 @@ export default function HypCA(props: HypCAPropsType) {
       return
     }
 
-    // main()
+    main()
   }, [canvas])
 
   return (
