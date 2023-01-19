@@ -86,6 +86,10 @@ const Ol = styled.ol({
   marginTop: 4,
 })
 
+const P = styled.p({
+  marginTop: 24,
+})
+
 const components = {
   h2: ({ children, ...props }: React.ComponentProps<any>) => {
     const id = _.kebabCase(children as string)
@@ -108,6 +112,9 @@ const components = {
   },
   ol: (props: React.ComponentProps<any>) => {
     return <Ol {...props} />
+  },
+  p: (props: React.ComponentProps<any>) => {
+    return <P {...props} />
   },
   ul: (props: React.ComponentProps<any>) => {
     return <Ul {...props} />
