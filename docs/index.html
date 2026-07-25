@@ -86,11 +86,28 @@
         --card: var(--zinc-50);
         --card-border: var(--zinc-100);
         --card-text: var(--zinc-700);
-        --card-weight: 400;
         --rule: var(--zinc-200);
         --icon: var(--zinc-800);
         --icon-hover: var(--violet-600);
+
+        /* face's `html, body` sets `font-weight: 500`, so anything
+         * without its own weight utility lands on 500. Cards are
+         * exactly that case in light mode, and their
+         * `dark:font-medium` is also 500, so cards are 500 in both
+         * modes. Paragraphs differ: `theme-body-1-colors` applies
+         * `font-normal`, which `dark:font-semibold` then beats in
+         * dark. Same story for the tagline via
+         * `theme-tagline-1-colors`. */
+        --base-weight: 500;
+        --card-weight: 500;
         --body-weight: 400;
+        --tagline-weight: 400;
+
+        /* face's global `::selection`, plus the tighter pair
+         * `box-card` scopes to its own subtree. */
+        --select-background: #f5f5f5;
+        --select-text: rgb(24, 24, 27);
+        --select-card-background: #e5e5e5;
       }
 
       @media (prefers-color-scheme: dark) {
@@ -102,16 +119,27 @@
           --card: var(--zinc-800);
           --card-border: var(--zinc-900);
           --card-text: var(--zinc-200);
-          /* face's cards carry `dark:font-medium`, paragraphs
-           * carry `dark:font-semibold`. CrowMark ships a single
-           * weight, so these read as synthetic bolding, same as
-           * on clue.surf. */
           --card-weight: 500;
           --body-weight: 600;
+          --tagline-weight: 600;
           --rule: var(--zinc-800);
           --icon: var(--zinc-500);
           --icon-hover: var(--violet-400);
+
+          --select-background: #3f3f46;
+          --select-text: rgb(244, 244, 245);
+          --select-card-background: #52525b;
         }
+
+        /* face/style/head.css scopes this to `*` in dark. */
+        * {
+          scrollbar-color: rgb(100, 116, 139);
+        }
+      }
+
+      ::selection {
+        background-color: var(--select-background);
+        color: var(--select-text);
       }
 
       *,
@@ -120,21 +148,27 @@
         box-sizing: border-box;
       }
 
-      html {
+      /* face/style/head.css declares `font-size: 17px;
+       * font-weight: 500; line-height: 1.5` on `html, body`
+       * together, so every element without its own weight utility
+       * inherits 500 rather than the browser's 400. */
+      html,
+      body {
         background: var(--page);
+        color: var(--body);
+        font-size: var(--text-base);
+        font-weight: var(--base-weight);
+        line-height: 1.5;
+        font-family: "CrowMark", monospace;
       }
 
       body {
         margin: 0;
         min-height: 100vh;
-        background: var(--page);
-        color: var(--body);
         /* `.font-CrowMark` in face/style/text.css. The negative
          * tracking and the hairline text-shadow are what give
          * CrowMark its inked weight on screen. */
-        font-family: "CrowMark", monospace;
-        font-size: var(--text-base);
-        line-height: 1.5;
+        color-scheme: light dark;
         letter-spacing: -0.04em;
         text-shadow: 0.02em 0 currentColor;
         -webkit-font-smoothing: antialiased;
@@ -572,7 +606,7 @@
                 >
                   <span class="name">Writing</span>
                   <span class="about"
-                    >Explorations on the Universe, language, and code</span
+                    >Explorations on the universe, language, and code</span
                   >
                 </a>
               </div>
