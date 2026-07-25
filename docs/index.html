@@ -165,10 +165,12 @@
       body {
         margin: 0;
         min-height: 100vh;
+        /* Lets the UA paint scrollbars and form controls in the
+         * matching scheme rather than always-light. */
+        color-scheme: light dark;
         /* `.font-CrowMark` in face/style/text.css. The negative
          * tracking and the hairline text-shadow are what give
          * CrowMark its inked weight on screen. */
-        color-scheme: light dark;
         letter-spacing: -0.04em;
         text-shadow: 0.02em 0 currentColor;
         -webkit-font-smoothing: antialiased;
@@ -199,7 +201,7 @@
         font-size: var(--text-h1);
         line-height: 1.5;
         font-weight: 700;
-        text-transform: uppercase;
+        /* text-transform: uppercase; */
         /* clue.surf overrides face's `tracking-wide-015` with an
          * important `-tracking-[0.05em]` on the landing H1. */
         letter-spacing: -0.05em;
@@ -238,7 +240,7 @@
       .tagline {
         color: var(--quiet);
         opacity: 0.8;
-        font-weight: 400;
+        font-weight: var(--tagline-weight);
         text-align: center;
       }
 
@@ -268,6 +270,7 @@
       @media (prefers-color-scheme: dark) {
         .portrait img {
           filter: invert(100%);
+          opacity: 0.7;
         }
       }
 
@@ -340,12 +343,18 @@
         container-type: inline-size;
       }
 
+      /* `align` defaults to `left`, so `justifyFor` gives
+       * `flex-start` and `rowMarginsFor` gives `0 / auto`. With no
+       * `maxWidth` the row is uncapped. */
       .grid-row {
         display: flex;
         flex-wrap: wrap;
         column-gap: 16px;
         row-gap: 16px;
         justify-content: flex-start;
+        margin-left: 0;
+        margin-right: auto;
+        max-width: none;
       }
 
       .grid-cell {
@@ -403,6 +412,12 @@
        * violet-500, the label and the subtitle both. */
       .card:hover span {
         color: var(--violet-500);
+      }
+
+      /* `box-card` overrides the global `::selection` band inside
+       * its own subtree, one step darker in each mode. */
+      .card ::selection {
+        background-color: var(--select-card-background);
       }
 
       /* The biography sits at the very bottom, per
