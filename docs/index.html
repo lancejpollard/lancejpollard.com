@@ -396,6 +396,36 @@
         box-shadow: var(--shadow-small2);
       }
 
+      /* Project marks, pulled from each repository's own `view/<repo>.svg`.
+       * clue.surf's `DisplayItem` renders these with `mb-24` and
+       * `dark:filter-(--invert-filter)`, so the same 24px gap and the same
+       * full invert apply here. Full invert rather than the 80% the ClueSurf
+       * mark in the icon row uses: these are line art on transparent, and at
+       * 64px a partial invert reads as muddy grey instead of white. */
+      .card .mark {
+        display: block;
+        height: 64px;
+        width: auto;
+        max-width: 100%;
+        margin-bottom: 24px;
+        user-select: none;
+        transition: filter 200ms ease;
+      }
+
+      .card:hover .mark {
+        filter: var(--purple-filter);
+      }
+
+      @media (prefers-color-scheme: dark) {
+        .card .mark {
+          filter: invert(100%);
+        }
+
+        .card:hover .mark {
+          filter: var(--dark-purple-filter);
+        }
+      }
+
       .card span {
         display: block;
         transition: color 200ms ease;
@@ -568,6 +598,13 @@
                   target="_blank"
                   rel="noopener noreferrer"
                 >
+                  <img
+                    class="mark"
+                    src="https://raw.githubusercontent.com/cluesurf/vibe/refs/heads/make/view/vibe.svg"
+                    alt=""
+                    height="64"
+                    loading="lazy"
+                  />
                   <span class="name">Vibe</span>
                   <span class="about">A discrete possible universe</span>
                 </a>
@@ -579,6 +616,13 @@
                   target="_blank"
                   rel="noopener noreferrer"
                 >
+                  <img
+                    class="mark"
+                    src="https://raw.githubusercontent.com/cluesurf/term/refs/heads/make/view/term.svg"
+                    alt=""
+                    height="64"
+                    loading="lazy"
+                  />
                   <span class="name">Term</span>
                   <span class="about">A reactive modeling language</span>
                 </a>
@@ -590,6 +634,13 @@
                   target="_blank"
                   rel="noopener noreferrer"
                 >
+                  <img
+                    class="mark"
+                    src="https://raw.githubusercontent.com/cluesurf/tone/refs/heads/make/view/tone.svg"
+                    alt=""
+                    height="64"
+                    loading="lazy"
+                  />
                   <span class="name">Tone</span>
                   <span class="about">A codified phonetic alphabet</span>
                 </a>
@@ -601,6 +652,13 @@
                   target="_blank"
                   rel="noopener noreferrer"
                 >
+                  <img
+                    class="mark"
+                    src="https://raw.githubusercontent.com/cluesurf/tune/refs/heads/make/view/tune.svg"
+                    alt=""
+                    height="64"
+                    loading="lazy"
+                  />
                   <span class="name">Tune</span>
                   <span class="about">A measured speaking language</span>
                 </a>
@@ -612,6 +670,13 @@
                   target="_blank"
                   rel="noopener noreferrer"
                 >
+                  <img
+                    class="mark"
+                    src="https://raw.githubusercontent.com/cluesurf/tree/refs/heads/make/view/tree-icon.svg"
+                    alt=""
+                    height="64"
+                    loading="lazy"
+                  />
                   <span class="name">Tree</span>
                   <span class="about">A flexible modeling notation</span>
                 </a>
@@ -623,6 +688,13 @@
                   target="_blank"
                   rel="noopener noreferrer"
                 >
+                  <img
+                    class="mark"
+                    src="https://raw.githubusercontent.com/cluesurf/talk/refs/heads/make/view/talk.svg"
+                    alt=""
+                    height="64"
+                    loading="lazy"
+                  />
                   <span class="name">Talk</span>
                   <span class="about">A phonetic sequence encoding</span>
                 </a>
