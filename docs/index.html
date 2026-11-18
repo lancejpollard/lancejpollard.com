@@ -22,15 +22,29 @@
     <link
       rel="preload"
       as="font"
-      type="font/otf"
-      href="/text/CrowMark.otf"
+      type="font/woff2"
+      href="https://site.clue.surf/thvmxfbs-bxzftszz-zhhvbfrl-fmzlbxxv.woff2"
       crossorigin="anonymous"
     />
     <style>
+      /* CrowMark from the ClueSurf CDN, the same files every ClueSurf
+       * site loads (`mesh/deck/site-mesh/code/base/assets.css`). The
+       * links are content-hashed, so a new CrowMark build gets new
+       * links and these keep working until they are swapped. */
       @font-face {
         font-family: "CrowMark";
-        src: url("/text/CrowMark.otf") format("opentype");
-        font-weight: normal;
+        src: url("https://site.clue.surf/thvmxfbs-bxzftszz-zhhvbfrl-fmzlbxxv.woff2")
+          format("woff2");
+        font-weight: 400 500;
+        font-style: normal;
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: "CrowMark";
+        src: url("https://site.clue.surf/mxdfxhmv-nlmztchn-zlrrbcbw-mshkzmsw.woff2")
+          format("woff2");
+        font-weight: 600 700;
         font-style: normal;
         font-display: swap;
       }
