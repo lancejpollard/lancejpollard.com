@@ -358,15 +358,16 @@
         container-type: inline-size;
       }
 
-      /* `align` defaults to `left`, so `justifyFor` gives
-       * `flex-start` and `rowMarginsFor` gives `0 / auto`. With no
-       * `maxWidth` the row is uncapped. */
+      /* Centered rather than face's default `flex-start`: a full row
+       * fills the width either way, and a last row holding one card
+       * sits in the middle instead of at the left. With no `maxWidth`
+       * the row is uncapped. */
       .grid-row {
         display: flex;
         flex-wrap: wrap;
         column-gap: 16px;
         row-gap: 16px;
-        justify-content: flex-start;
+        justify-content: center;
         margin-left: 0;
         margin-right: auto;
         max-width: none;
